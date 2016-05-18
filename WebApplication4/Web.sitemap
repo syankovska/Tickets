@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode url="~/frmMain.aspx" title="Выбор фильма"  description="">
+         <siteMapNode url="~/frmSessions.aspx" title="Выбор сеанса"  description="" >
+          <!-- <siteMapNode url="~/frmTicketTypes.aspx" title="Выбор билетов"  description="" >-->
+                     <siteMapNode url="~/frmSeats.aspx" title="Выбор мест"  description="">
+              <siteMapNode url="~/frmPayment.aspx" title="Оплата"  description="" >
+                <siteMapNode url="~/callback.aspx" title="Подтверждение оплаты"  description="" />
+              </siteMapNode>
+            </siteMapNode>
+            <!--</siteMapNode>-->
+    </siteMapNode>
+    <siteMapNode url="~/frmCinemas.aspx" title="Выбор кинотеатра"  description="">
+    </siteMapNode>    
+</siteMapNode>
+   
+</siteMap>
