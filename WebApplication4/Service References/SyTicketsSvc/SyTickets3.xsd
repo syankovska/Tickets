@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://sy-ws:8080/SyTickets/SyTickets.Sessions.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SyTickets" />
+  <xs:import schemaLocation="http://sy-ws:8080/SyTickets/SyTickets.Sessions.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:element name="GetAllSessions">
     <xs:complexType>
       <xs:sequence />
@@ -151,6 +152,10 @@
         <xs:element minOccurs="0" name="userSessionId" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="paymentValueCents" type="xs:int" />
         <xs:element minOccurs="0" name="bookingNotes" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="unpaidBooking" type="xs:boolean" />
+        <xs:element minOccurs="0" name="customerEmail" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="customerPhone" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="customerName" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -182,6 +187,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="amount" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="uri" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -243,6 +249,18 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="GetCinemaByCinemaIDResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDistinctSessionDate">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDistinctSessionDateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetDistinctSessionDateResult" nillable="true" type="q16:ArrayOfdateTime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

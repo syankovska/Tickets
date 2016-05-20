@@ -4,7 +4,9 @@
          <siteMapNode url="~/frmSessions.aspx" title="Выбор сеанса"  description="" >
           <!-- <siteMapNode url="~/frmTicketTypes.aspx" title="Выбор билетов"  description="" >-->
                      <siteMapNode url="~/frmSeats.aspx" title="Выбор мест"  description="">
-              <siteMapNode url="~/frmPayment.aspx" title="Оплата"  description="" >
+                       <siteMapNode url="~/frmCustomerInfo.aspx" title="К оплате"  description="">
+                        <siteMapNode url="~/frmPayment.aspx" title="Оплата"  description="" >
+                        </siteMapNode> 
                 <siteMapNode url="~/callback.aspx" title="Подтверждение оплаты"  description="" />
               </siteMapNode>
             </siteMapNode>

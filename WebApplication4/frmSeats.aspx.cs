@@ -14,10 +14,11 @@ namespace Tickets
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
+            if (Session["CinemaId"] != null && Session["SessionId"] != null)
             {
-                List<SyRestTicketType> restTicketType = sc.GetTicketTypes(Session["CinemaId"].ToString(),
+                using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
+            {
+                            List <SyRestTicketType> restTicketType = sc.GetTicketTypes(Session["CinemaId"].ToString(),
                                                                           Session["SessionId"].ToString());
 
                 SyTicketsSvc.SySeatLayoutData sySeatLayoutData = new SyTicketsSvc.SySeatLayoutData();
@@ -95,7 +96,8 @@ namespace Tickets
 
                 DrawAreas(sySeatLayoutData, DrawGrid(maxcolcount, rowcount, cellwidth, cellHeight, leftb, topb, cellWidthScale, scaleFactor), cellWidthScale, cellwidth, scaleFactor, restTicketType);
             }
-        }
+            }
+         }
 
         protected void DrawAreas(SyTicketsSvc.SySeatLayoutData sySeatLayoutData, List<GridPoint> listPoints, double cellWidthScale, int cellwidth, int scaleFactor, List<SyRestTicketType> restTicketType)
         {
@@ -251,7 +253,7 @@ namespace Tickets
 
             int i = 0;
 
-            foreach (var s in syRow.Seats)
+            foreach ( SySeat  s in syRow.Seats)
             {
 
                 TableCell cell = new TableCell();
@@ -284,6 +286,8 @@ namespace Tickets
                 image.Attributes.Add("Status", Convert.ToString(s.Status));
                 image.Attributes.Add("Price", Convert.ToString(price));
                 image.Attributes.Add("TicketTypeCode", Convert.ToString(ticketTypeCode));
+                image.Attributes.Add("RowNumber", Convert.ToString(syRow.PhysicalName));
+                image.Attributes.Add("SeatNumber", Convert.ToString(s.Id));
 
                 cell.Controls.Add(image);
                 cell.Controls.Add(tb);
@@ -316,14 +320,16 @@ namespace Tickets
                             (c.Controls[0] as Image).Attributes.Add("onmouseover", "showhint('" +
                                 (c.Controls[0] as Image).ID +
                                 " price: " + (c.Controls[0] as Image).Attributes["price"] +
-                                " TicketTypeCode: " + (c.Controls[0] as Image).Attributes["TicketTypeCode"] +
+                           //     " TicketTypeCode: " + (c.Controls[0] as Image).Attributes["TicketTypeCode"] +
                                 " area: " + (c.Controls[0] as Image).Attributes["area"] +
-                                " AreaCategoryCode: " + (c.Controls[0] as Image).Attributes["AreaCategoryCode"] +
-                                " Status: " + (c.Controls[0] as Image).Attributes["Status"] +
-                                " AreaNumber: " + (c.Controls[0] as Image).Attributes["AreaNumber"] +
-                                " ColumnIndex: " + (c.Controls[0] as Image).Attributes["ColumnIndex"] +
-                                " RowIndex: " + (c.Controls[0] as Image).Attributes["RowIndex"] +
-                                "', this, event, '150px')");
+                          //      " AreaCategoryCode: " + (c.Controls[0] as Image).Attributes["AreaCategoryCode"] +
+                          //      " Status: " + (c.Controls[0] as Image).Attributes["Status"] +
+                          //      " AreaNumber: " + (c.Controls[0] as Image).Attributes["AreaNumber"] +
+                          //      " ColumnIndex: " + (c.Controls[0] as Image).Attributes["ColumnIndex"] +
+                          //      " RowIndex: " + (c.Controls[0] as Image).Attributes["RowIndex"] +
+                                " RowNumber: " + (c.Controls[0] as Image).Attributes["RowNumber"] +
+                                " SeatNumber: " + (c.Controls[0] as Image).Attributes["SeatNumber"] +
+                               "', this, event, '150px')");
 
                         }
                         sNum++;
@@ -441,6 +447,7 @@ namespace Tickets
             UpdateOrderedSeats();
             Session["TicketTypes"] = null;
             Session["SelectedSeats"] = null;
+            Master.FindControl("HyperLinkNext").Visible = true;
         }
 
         protected void UpdateOrderedSeats()

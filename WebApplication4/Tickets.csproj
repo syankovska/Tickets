@@ -62,11 +62,13 @@
   <ItemGroup>
     <Content Include="callback.aspx" />
     <Content Include="frmCinemas.aspx" />
+    <Content Include="frmCustomerInfo.aspx" />
     <Content Include="frmMain.aspx" />
     <Content Include="frmPayment.aspx" />
     <Content Include="frmSeats.aspx" />
     <Content Include="frmSessions.aspx" />
     <Content Include="frmTicketTypes.aspx" />
+    <None Include="Properties\PublishProfiles\Sy profile 1.pubxml" />
     <None Include="Service References\SyTicketsSvc\Sessions.wsdl" />
     <None Include="Service References\SyTicketsSvc\SyTickets.disco" />
     <None Include="Service References\SyTicketsSvc\configuration91.svcinfo" />
@@ -143,6 +145,13 @@
     </Compile>
     <Compile Include="frmCinemas.aspx.designer.cs">
       <DependentUpon>frmCinemas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmCustomerInfo.aspx.cs">
+      <DependentUpon>frmCustomerInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmCustomerInfo.aspx.designer.cs">
+      <DependentUpon>frmCustomerInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmMain.aspx.cs">
       <DependentUpon>frmMain.aspx</DependentUpon>

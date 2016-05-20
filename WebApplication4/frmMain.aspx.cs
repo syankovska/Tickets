@@ -14,7 +14,10 @@ namespace Tickets
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
+            if (Session["UserSessionId"] != null)
+                using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
+                    sc.CancelOrder(Convert.ToString(Session["UserSessionId"]));
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -23,7 +26,8 @@ namespace Tickets
             GridViewRow row = GridView1.SelectedRow;
             Session["FilmId"] = selKey;
             Session["FilmName"] = Convert.ToString(row.Cells[2].Text);
-                
+            Master.FindControl("HyperLinkNext").Visible = true;
+
         }
     }
 

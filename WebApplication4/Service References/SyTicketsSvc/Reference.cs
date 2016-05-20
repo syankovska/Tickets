@@ -216,6 +216,7 @@ namespace Tickets.SyTicketsSvc {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tickets.SyTicketsSvc.SyCinema>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tickets.SyTicketsSvc.SyCinema))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<System.DateTime>))]
     public partial class SyFilm : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -399,6 +400,7 @@ namespace Tickets.SyTicketsSvc {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tickets.SyTicketsSvc.SyCinema>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tickets.SyTicketsSvc.SyCinema))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<System.DateTime>))]
     public partial class SyRestTicketType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -1488,6 +1490,9 @@ namespace Tickets.SyTicketsSvc {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private Tickets.SyTicketsSvc.SyPosition PositionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1500,6 +1505,19 @@ namespace Tickets.SyTicketsSvc {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IdField, value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
             }
         }
         
@@ -2184,13 +2202,13 @@ namespace Tickets.SyTicketsSvc {
         string CancelOrder(string userSessionId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/CompleteOrder", ReplyAction="http://tempuri.org/ISessions/CompleteOrderResponse")]
-        string CompleteOrder(string userSessionId, int paymentValueCents, string bookingNotes);
+        string CompleteOrder(string userSessionId, int paymentValueCents, string bookingNotes, bool unpaidBooking, string customerEmail, string customerPhone, string customerName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/SySetSelectedSeats", ReplyAction="http://tempuri.org/ISessions/SySetSelectedSeatsResponse")]
         string SySetSelectedSeats(string userSessionId, string cinemaId, string sessionId, System.Collections.Generic.List<Tickets.SyTicketsSvc.SySelectedSeat> sySelectedSeats);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GetTaslinkOrder", ReplyAction="http://tempuri.org/ISessions/GetTaslinkOrderResponse")]
-        Tickets.SyTicketsSvc.TaslinkOrderResponse GetTaslinkOrder(string amount);
+        Tickets.SyTicketsSvc.TaslinkOrderResponse GetTaslinkOrder(string amount, string uri);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GetTaslinkStatus", ReplyAction="http://tempuri.org/ISessions/GetTaslinkStatusResponse")]
         Tickets.SyTicketsSvc.TaslinkStatusResponse GetTaslinkStatus(string oid);
@@ -2203,6 +2221,9 @@ namespace Tickets.SyTicketsSvc {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GetCinemaByCinemaID", ReplyAction="http://tempuri.org/ISessions/GetCinemaByCinemaIDResponse")]
         string GetCinemaByCinemaID(string cinemaId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GetDistinctSessionDate", ReplyAction="http://tempuri.org/ISessions/GetDistinctSessionDateResponse")]
+        System.Collections.Generic.List<System.DateTime> GetDistinctSessionDate();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2272,16 +2293,16 @@ namespace Tickets.SyTicketsSvc {
             return base.Channel.CancelOrder(userSessionId);
         }
         
-        public string CompleteOrder(string userSessionId, int paymentValueCents, string bookingNotes) {
-            return base.Channel.CompleteOrder(userSessionId, paymentValueCents, bookingNotes);
+        public string CompleteOrder(string userSessionId, int paymentValueCents, string bookingNotes, bool unpaidBooking, string customerEmail, string customerPhone, string customerName) {
+            return base.Channel.CompleteOrder(userSessionId, paymentValueCents, bookingNotes, unpaidBooking, customerEmail, customerPhone, customerName);
         }
         
         public string SySetSelectedSeats(string userSessionId, string cinemaId, string sessionId, System.Collections.Generic.List<Tickets.SyTicketsSvc.SySelectedSeat> sySelectedSeats) {
             return base.Channel.SySetSelectedSeats(userSessionId, cinemaId, sessionId, sySelectedSeats);
         }
         
-        public Tickets.SyTicketsSvc.TaslinkOrderResponse GetTaslinkOrder(string amount) {
-            return base.Channel.GetTaslinkOrder(amount);
+        public Tickets.SyTicketsSvc.TaslinkOrderResponse GetTaslinkOrder(string amount, string uri) {
+            return base.Channel.GetTaslinkOrder(amount, uri);
         }
         
         public Tickets.SyTicketsSvc.TaslinkStatusResponse GetTaslinkStatus(string oid) {
@@ -2298,6 +2319,10 @@ namespace Tickets.SyTicketsSvc {
         
         public string GetCinemaByCinemaID(string cinemaId) {
             return base.Channel.GetCinemaByCinemaID(cinemaId);
+        }
+        
+        public System.Collections.Generic.List<System.DateTime> GetDistinctSessionDate() {
+            return base.Channel.GetDistinctSessionDate();
         }
     }
 }

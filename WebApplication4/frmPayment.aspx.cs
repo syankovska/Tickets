@@ -17,10 +17,17 @@ namespace Tickets
             {
                 int totalValueCents = Convert.ToInt32(Session["TotalValueCents"]) / 100;
 
+                try
+                {
                 TaslinkOrderResponse taslinkOrderResponse = new TaslinkOrderResponse();
-                taslinkOrderResponse = sc.GetTaslinkOrder(Convert.ToString(totalValueCents));
+                taslinkOrderResponse = sc.GetTaslinkOrder(Convert.ToString(totalValueCents),HttpContext.Current.Request.Url.AbsoluteUri) ;
 
                 Response.Redirect("http://multiplex.taslink.com.ua/?oid=" + taslinkOrderResponse.oid);
+                }
+                catch (TimeoutException)
+                {
+
+                }
             }
          
         }

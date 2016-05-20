@@ -39,7 +39,13 @@ namespace Tickets
                     {
                         if (Session["UserSessionId"] != null)
                             TextBox5.Text = sc.CompleteOrder(Convert.ToString(Session["UserSessionId"]),
-                               Convert.ToInt32(Session["TotalValueCents"]), taslinkStatusResponse.oid);
+                               Convert.ToInt32(Session["TotalValueCents"]), taslinkStatusResponse.oid, false,
+                               Convert.ToString(Session["CustomerEmail"]),
+                               Convert.ToString(Session["CustomerName"]),
+                               Convert.ToString(Session["CustomerPhone"])
+                               );
+                      else TextBox5.Text = "No session UserSessionId";
+
 
                     }
                     else TextBox5.Text = "Ошибка оплаты";

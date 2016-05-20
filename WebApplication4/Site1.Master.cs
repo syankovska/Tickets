@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Tickets.SyTicketsSvc;
 
 namespace Tickets
 {
@@ -11,16 +12,7 @@ namespace Tickets
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["TicketDate"] == null)
-                Session["TicketDate"] = DateTime.Now.Date;
-
-            Calendar1.SelectedDate = DateTime.Parse(Session["TicketDate"].ToString());
-
-            if (SiteMap.CurrentNode.Title.Equals("Выбор фильма") ||
-                SiteMap.CurrentNode.Title.Equals("Выбор сеанса") ||
-                SiteMap.CurrentNode.Title.Equals("Выбор кинотеатра"))
-                Calendar1.Visible = true;
-            else Calendar1.Visible = false;
+            
 
 
             if (!SiteMap.CurrentNode.Equals(SiteMap.RootNode))
@@ -32,21 +24,40 @@ namespace Tickets
             else HyperLinkPrev.Visible = false;
 
             if (SiteMap.CurrentNode.HasChildNodes)
-                {
-                HyperLinkNext.Visible = true;
-                HyperLinkNext.Text = SiteMap.CurrentNode.ChildNodes[0].ToString()+ ">>";
+            {
+             //   HyperLinkNext.Visible = true;
+                HyperLinkNext.Text = SiteMap.CurrentNode.ChildNodes[0].ToString() + ">>";
                 HyperLinkNext.NavigateUrl = SiteMap.CurrentNode.ChildNodes[0].Url;
             }
             else HyperLinkNext.Visible = false;
         }
 
-        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        protected void DropDownListDate_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Session["TicketDate"] = Calendar1.SelectedDate;
-           
-
+            Session["TicketDate"] = DropDownListDate.SelectedValue;
+          //  Server.Transfer(SiteMap.CurrentNode.Url);
         }
 
-        
+       
+        protected void DropDownListDate_DataBound1(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+                using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
+                {
+
+                    if (Session["TicketDate"] == null)
+                    {
+
+                        DateTime ticketDate = sc.GetDistinctSessionDate().OrderBy(x => x).FirstOrDefault();
+                        if (ticketDate != null)
+                        {
+                            DropDownListDate.SelectedIndex = 0;
+                            Session["TicketDate"] = DropDownListDate.SelectedValue;
+                        }
+                    }
+                    else DropDownListDate.SelectedValue = Convert.ToString(Session["TicketDate"]);
+
+                }
+        }
     }
 }

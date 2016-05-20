@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Tickets.SyTicketsSvc;
 
 namespace Tickets
 {
@@ -11,6 +12,11 @@ namespace Tickets
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (Session["UserSessionId"] != null)
+                using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
+                    sc.CancelOrder(Convert.ToString(Session["UserSessionId"]));
+
             if (ObjectDataSource1 != null)
             {
                 if (Session["TicketDate"] == null)
@@ -47,8 +53,8 @@ namespace Tickets
 
             Session["CinemaName"] = (sender as GridView).SelectedRow.Cells[4].Text;
             Session["ShowTime"] = (sender as GridView).SelectedRow.Cells[7].Text;
-     
 
+            Master.FindControl("HyperLinkNext").Visible = true;
         }
 
         protected void ObjectDataSource1_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
