@@ -35,7 +35,7 @@ namespace Tickets
 
                     Label5.Text = "Complete Order Result";
 
-                    if (TextBox2.Text.Equals("1"))
+                    if (TextBox2.Text.Trim().Equals("Удачное выполнение транзакции"))
                     {
                         if (Session["UserSessionId"] != null)
                             TextBox5.Text = sc.CompleteOrder(Convert.ToString(Session["UserSessionId"]),

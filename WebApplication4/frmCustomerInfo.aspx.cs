@@ -16,9 +16,9 @@ namespace Tickets
                 if (Session["CustomerName"] != null)
                     TextBoxName.Text = Convert.ToString(Session["CustomerName"]);
                 if (Session["CustomerPhone"] != null)
-                    TextBoxName.Text = Convert.ToString(Session["CustomerPhone"]);
+                    TextBoxPhone.Text = Convert.ToString(Session["CustomerPhone"]);
                 if (Session["CustomerEmail"] != null)
-                    TextBoxName.Text = Convert.ToString(Session["CustomerEmail"]);
+                    TextBoxEmail.Text = Convert.ToString(Session["CustomerEmail"]);
             }
         }
 
