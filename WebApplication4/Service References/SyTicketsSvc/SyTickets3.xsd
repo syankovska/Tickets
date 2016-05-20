@@ -252,6 +252,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetFilmByScheduledFilmId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="scheduledFilmId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFilmByScheduledFilmIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetFilmByScheduledFilmIdResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetDistinctSessionDate">
     <xs:complexType>
       <xs:sequence />

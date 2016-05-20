@@ -4,7 +4,7 @@
         <asp:GridView ID="GridView1" runat="server" AllowPaging="True" Caption="Select Cinema" CellPadding="4" DataKeyNames="ID" DataSourceID="ObjectDataSource1" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" AutoGenerateColumns="False" AutoGenerateSelectButton="True">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
-                <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" />
+                <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" Visible="False" />
                 <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
                 <asp:BoundField DataField="Address1" HeaderText="Address1" SortExpression="Address1" />
                 <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />

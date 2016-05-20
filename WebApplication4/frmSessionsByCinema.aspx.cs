@@ -8,7 +8,7 @@ using Tickets.SyTicketsSvc;
 
 namespace Tickets
 {
-    public partial class frmSessions : System.Web.UI.Page
+    public partial class frmSessionsByCinema : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,28 +26,19 @@ namespace Tickets
                 ObjectDataSource1.SelectParameters["sessionBusinessDate"].DefaultValue =
                 Session["TicketDate"].ToString();
 
-                if (Session["FilmId"] != null)
-                    ObjectDataSource1.SelectParameters["scheduledFilmId"].DefaultValue =
-                 Session["FilmId"].ToString();
+                if (Session["CinemaId"] != null)
+                    ObjectDataSource1.SelectParameters["cinemaId"].DefaultValue =
+                 Session["CinemaId"].ToString();
 
 
             }
         }
 
-        public void SetDate()
-        {
-            return;
-        }
-
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //string selKey = (sender as GridView).SelectedDataKey.Value.ToString();
-            //string script = "alert(\"" + selKey + "\");";
-            //ScriptManager.RegisterStartupScript(this, GetType(),
-            //                      "ServerControlScript", script, true);
             if (GridView1.SelectedDataKey != null)
             {
-                Session["SessionId"] =  GridView1.SelectedDataKey.Values[0];
+                Session["SessionId"] = GridView1.SelectedDataKey.Values[0];
                 Session["CinemaId"] = GridView1.SelectedDataKey.Values[1];
             }
 

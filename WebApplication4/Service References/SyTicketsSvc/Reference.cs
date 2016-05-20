@@ -35,6 +35,9 @@ namespace Tickets.SyTicketsSvc {
         private string ScheduledFilmIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ScheduledFilmTitleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SeatsAvailableField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -107,6 +110,19 @@ namespace Tickets.SyTicketsSvc {
                 if ((object.ReferenceEquals(this.ScheduledFilmIdField, value) != true)) {
                     this.ScheduledFilmIdField = value;
                     this.RaisePropertyChanged("ScheduledFilmId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ScheduledFilmTitle {
+            get {
+                return this.ScheduledFilmTitleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ScheduledFilmTitleField, value) != true)) {
+                    this.ScheduledFilmTitleField = value;
+                    this.RaisePropertyChanged("ScheduledFilmTitle");
                 }
             }
         }
@@ -2222,6 +2238,9 @@ namespace Tickets.SyTicketsSvc {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GetCinemaByCinemaID", ReplyAction="http://tempuri.org/ISessions/GetCinemaByCinemaIDResponse")]
         string GetCinemaByCinemaID(string cinemaId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GetFilmByScheduledFilmId", ReplyAction="http://tempuri.org/ISessions/GetFilmByScheduledFilmIdResponse")]
+        string GetFilmByScheduledFilmId(string scheduledFilmId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GetDistinctSessionDate", ReplyAction="http://tempuri.org/ISessions/GetDistinctSessionDateResponse")]
         System.Collections.Generic.List<System.DateTime> GetDistinctSessionDate();
     }
@@ -2319,6 +2338,10 @@ namespace Tickets.SyTicketsSvc {
         
         public string GetCinemaByCinemaID(string cinemaId) {
             return base.Channel.GetCinemaByCinemaID(cinemaId);
+        }
+        
+        public string GetFilmByScheduledFilmId(string scheduledFilmId) {
+            return base.Channel.GetFilmByScheduledFilmId(scheduledFilmId);
         }
         
         public System.Collections.Generic.List<System.DateTime> GetDistinctSessionDate() {

@@ -63,10 +63,13 @@
     <Content Include="callback.aspx" />
     <Content Include="frmCinemas.aspx" />
     <Content Include="frmCustomerInfo.aspx" />
+    <Content Include="frmCustomInfoTransfer.aspx" />
     <Content Include="frmMain.aspx" />
     <Content Include="frmPayment.aspx" />
     <Content Include="frmSeats.aspx" />
+    <Content Include="frmSeatsTransfer.aspx" />
     <Content Include="frmSessions.aspx" />
+    <Content Include="frmSessionsByCinema.aspx" />
     <Content Include="frmTicketTypes.aspx" />
     <None Include="Properties\PublishProfiles\Sy profile 1.pubxml" />
     <None Include="Service References\SyTicketsSvc\Sessions.wsdl" />
@@ -153,6 +156,13 @@
     <Compile Include="frmCustomerInfo.aspx.designer.cs">
       <DependentUpon>frmCustomerInfo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmCustomInfoTransfer.aspx.cs">
+      <DependentUpon>frmCustomInfoTransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmCustomInfoTransfer.aspx.designer.cs">
+      <DependentUpon>frmCustomInfoTransfer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.aspx.cs">
       <DependentUpon>frmMain.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -174,12 +184,26 @@
     <Compile Include="frmSeats.aspx.designer.cs">
       <DependentUpon>frmSeats.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmSeatsTransfer.aspx.cs">
+      <DependentUpon>frmSeatsTransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmSeatsTransfer.aspx.designer.cs">
+      <DependentUpon>frmSeatsTransfer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmSessions.aspx.cs">
       <DependentUpon>frmSessions.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="frmSessions.aspx.designer.cs">
       <DependentUpon>frmSessions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmSessionsByCinema.aspx.cs">
+      <DependentUpon>frmSessionsByCinema.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmSessionsByCinema.aspx.designer.cs">
+      <DependentUpon>frmSessionsByCinema.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmTicketTypes.aspx.cs">
       <DependentUpon>frmTicketTypes.aspx</DependentUpon>

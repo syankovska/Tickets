@@ -13,6 +13,7 @@
       <xs:element minOccurs="0" name="CinemaName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ScheduledFilmId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ScheduledFilmTitle" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SeatsAvailable" type="xs:int" />
       <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SessionAttributesNames" nillable="true" type="q1:ArrayOfstring" />
       <xs:element minOccurs="0" name="SessionBusinessDate" type="xs:dateTime" />
