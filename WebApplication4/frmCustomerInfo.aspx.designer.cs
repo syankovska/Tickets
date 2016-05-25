@@ -76,12 +76,21 @@ namespace Tickets {
         protected global::System.Web.UI.WebControls.TextBox TextBoxEmail;
         
         /// <summary>
-        /// ButtonInfo control.
+        /// LabelIsBooking control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonInfo;
+        protected global::System.Web.UI.WebControls.Label LabelIsBooking;
+        
+        /// <summary>
+        /// CheckBoxIsBooking control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxIsBooking;
     }
 }

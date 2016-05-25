@@ -14,7 +14,36 @@ namespace Tickets
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["CinemaId"] != null && Session["SessionId"] != null)
+            if (!string.IsNullOrEmpty(Request.QueryString["IsBooking"]))
+            {
+                Session["IsBooking"] = (Request.QueryString["IsBooking"]);
+            }
+
+            if (!string.IsNullOrEmpty(Request.QueryString["SessionId"]) && !string.IsNullOrEmpty(Request.QueryString["CinemaId"]))
+            {
+
+                Session["SessionId"] = (Request.QueryString["SessionId"]);
+                Session["CinemaId"] = (Request.QueryString["CinemaId"]);
+                using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
+                {
+                    var c = sc.GetCinemas().Where(x => x.ID.Equals(Session["CinemaId"])).FirstOrDefault();
+                    if (c != null ) Session["CinemaName"] = c.Name;
+
+                    var session = sc.GetSessionsByCinema(Convert.ToString(Session["CinemaId"])).Where(x => x.SessionId.Equals(Session["SessionId"])).FirstOrDefault();
+                    if (session != null)
+                    {
+                        string scheduledFilmId = session.ScheduledFilmId;
+                        DateTime showTime = session.Showtime;
+                        Session["FilmName"] = sc.GetAllFilms().Where(x => x.ScheduledFilmId.Equals(scheduledFilmId)).FirstOrDefault().Title;
+                        Session["ShowTime"] = Convert.ToString(showTime);
+                    }
+                                   
+                }
+
+                }
+           
+
+                if (Session["CinemaId"] != null && Session["SessionId"] != null)
             {
                 using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
             {
@@ -85,16 +114,37 @@ namespace Tickets
                 if (area != null) cellHeight = area.Height;
 
 
-                var topArea = sySeatLayoutData.Areas.OrderByDescending(x => x.Top).FirstOrDefault();
-                var bottomArea = sySeatLayoutData.Areas.OrderBy(x => x.Top).FirstOrDefault();
+                    //                var topArea = sySeatLayoutData.Areas.OrderByDescending(x => x.Top).FirstOrDefault();
+                    //               var bottomArea = sySeatLayoutData.Areas.OrderBy(x => x.Top).FirstOrDefault();
 
-                if (topArea != null && bottomArea != null)
-                {
-                    rowcount = (topArea.Top - bottomArea.Top) / cellHeight + 1;
 
-                }
 
-                DrawAreas(sySeatLayoutData, DrawGrid(maxcolcount, rowcount, cellwidth, cellHeight, leftb, topb, cellWidthScale, scaleFactor), cellWidthScale, cellwidth, scaleFactor, restTicketType);
+
+                    //    if (topArea != null && bottomArea != null)
+                    //{
+                    //        rowcount = (topArea.Top - bottomArea.Top - bottomArea.Height) / cellHeight + 1;
+                    //}
+
+                    var distinctHeights = sySeatLayoutData.Areas
+                             .GroupBy(p => new { p.Top, p.Height })
+                             .Select(g => g.First())
+                             .ToList();
+
+
+                    if (distinctHeights != null)
+                    {
+                        rowcount = distinctHeights.Sum(g => g.Height) / cellHeight;
+                        foreach (var a in sySeatLayoutData.Areas)
+                        {
+                            if ((a.Top - topb) % cellHeight > 0)
+                            {
+                                a.Top = a.Top + cellHeight - (a.Top - topb) % cellHeight;
+                                rowcount++;
+                            }
+
+                        }
+                    }
+                    DrawAreas(sySeatLayoutData, DrawGrid(maxcolcount, rowcount+2, cellwidth, cellHeight, leftb, topb, cellWidthScale, scaleFactor), cellWidthScale, cellwidth, scaleFactor, restTicketType);
             }
             }
          }
@@ -120,63 +170,70 @@ namespace Tickets
                 }
                 if (pointOfList != null)
                 {
-                    int spanCol = Convert.ToInt32((a.Width / a.ColumnCount) / (cellwidth * cellWidthScale));
+                    int spanCol  = Convert.ToInt32((a.Width / a.ColumnCount) / (cellwidth * cellWidthScale));
                     for (int i = 0; i < a.RowCount; i++)
                     {
+
                         int curTableRow = pointOfList.RowId - a.RowCount + 1 + i;
-                        for (int j = 0; j < Table1.Rows[curTableRow].Cells.Count; j++)
+                        if (curTableRow >= 0)
                         {
-                            if (j == pointOfList.ColumnId)
+                            for (int j = 0; j < Table1.Rows[curTableRow].Cells.Count; j++)
                             {
-                                for (int jj = j; jj < j + a.ColumnCount; jj++)
+                                if (j == pointOfList.ColumnId)
                                 {
-                                    Table1.Rows[curTableRow].Cells[jj].ColumnSpan = Convert.ToInt32(spanCol);
-                                    Table1.Rows[curTableRow].Cells[jj].Attributes.Remove("Style");
-                                    //   Table1.Rows[curTableRow].Cells[jj].Attributes.Add("Style", String.
-                                    //          Format("width: {0}px",
-                                    //                       scaleFactor * cellwidth * cellWidthScale * spanCol));
-                                    Table1.Rows[curTableRow].Cells[jj].CssClass = "cell" + a.AreaCategoryCode;
-                                }
-
-
-                                for (int jj = 0; jj < a.ColumnCount * spanCol - a.ColumnCount; jj++)
-                                {
-                                    if (j + a.ColumnCount < Table1.Rows[curTableRow].Cells.Count)
+                                    for (int jj = j; jj < j + a.ColumnCount; jj++)
                                     {
-                                        try
-                                        {
-                                            var remove = Table1.Rows[curTableRow].Cells[j + a.ColumnCount];
-                                            Table1.Rows[curTableRow].Cells.Remove(remove);
-                                        }
-                                        catch (Exception)
-                                        {
-
-                                        }
-
+                                        Table1.Rows[curTableRow].Cells[jj].ColumnSpan = Convert.ToInt32(spanCol);
+                                        Table1.Rows[curTableRow].Cells[jj].Attributes.Remove("Style");
+                                        //   Table1.Rows[curTableRow].Cells[jj].Attributes.Add("Style", String.
+                                        //          Format("width: {0}px",
+                                        //                       scaleFactor * cellwidth * cellWidthScale * spanCol));
+                                        Table1.Rows[curTableRow].Cells[jj].CssClass = "cell" + a.AreaCategoryCode;
                                     }
+
+
+                                    for (int jj = 0; jj < a.ColumnCount * spanCol - a.ColumnCount; jj++)
+                                    {
+                                        if (j + a.ColumnCount < Table1.Rows[curTableRow].Cells.Count)
+                                        {
+                                            try
+                                            {
+                                                var remove = Table1.Rows[curTableRow].Cells[j + a.ColumnCount];
+                                                Table1.Rows[curTableRow].Cells.Remove(remove);
+                                            }
+                                            catch (Exception)
+                                            {
+
+                                            }
+
+                                        }
+                                    }
+
+                                    var listPointsForUpdate = listPoints.Where(p => p.ColumnId > pointOfList.ColumnId + a.ColumnCount * spanCol && p.Y == a.Top).ToList();
+                                    foreach (var p in listPointsForUpdate)
+                                    { p.ColumnId = p.ColumnId - a.ColumnCount; }
+
+                                    int priceInCents = 0;
+                                    string ticketTypeCode = "";
+                                    var areaCategoryCode = restTicketType.Where(p => p.AreaCategoryCode.Equals(a.AreaCategoryCode)).FirstOrDefault();
+                                    if (areaCategoryCode != null)
+                                    {
+                                        priceInCents = areaCategoryCode.PriceInCents;
+                                        ticketTypeCode = areaCategoryCode.TicketTypeCode;
+                                    }
+
+
+
+                                    SetSeats(a.Rows[a.RowCount - i - 1], curTableRow, pointOfList.ColumnId, a.Description, a.AreaCategoryCode, priceInCents, ticketTypeCode);
+
                                 }
-
-                                var listPointsForUpdate = listPoints.Where(p => p.ColumnId > pointOfList.ColumnId + a.ColumnCount * spanCol && p.Y == a.Top).ToList();
-                                foreach (var p in listPointsForUpdate)
-                                { p.ColumnId = p.ColumnId - a.ColumnCount; }
-
-                                int priceInCents = 0;
-                                string ticketTypeCode = "";
-                                var areaCategoryCode = restTicketType.Where(p => p.AreaCategoryCode.Equals(a.AreaCategoryCode)).FirstOrDefault();
-                                if (areaCategoryCode != null)
-                                {
-                                    priceInCents = areaCategoryCode.PriceInCents;
-                                    ticketTypeCode = areaCategoryCode.TicketTypeCode;
-                                }
-
-
-
-                                SetSeats(a.Rows[a.RowCount - i - 1], curTableRow, pointOfList.ColumnId, a.Description, a.AreaCategoryCode, priceInCents, ticketTypeCode);
-
                             }
                         }
+                        
                     }
+                    
                 }
+               
             }
 
 
@@ -251,13 +308,11 @@ namespace Tickets
         protected void SetSeats(SyRow syRow, int curTableRow, int firstCellId, string arDescription, string areaCategoryCode, int price, string ticketTypeCode)
         {
 
-            int i = 0;
-
-            foreach ( SySeat  s in syRow.Seats)
+           foreach ( SySeat  s in syRow.Seats)
             {
 
                 TableCell cell = new TableCell();
-                cell = Table1.Rows[curTableRow].Cells[firstCellId + i];
+                cell = Table1.Rows[curTableRow].Cells[firstCellId + s.Position.ColumnIndex];
                 Image image = new Image();
                 image.ImageUrl = "~/sofa16_blue.png";
 
@@ -281,7 +336,7 @@ namespace Tickets
                 image.Attributes.Add("Area", arDescription);
                 image.Attributes.Add("AreaCategoryCode", areaCategoryCode);
                 image.Attributes.Add("AreaNumber", Convert.ToString(s.Position.AreaNumber));
-                image.Attributes.Add("ColumnIndex", Convert.ToString(s.Position.ColumnIndex));//Convert.ToString(syRow.Seats.Count-s.Position.ColumnIndex-1));
+                image.Attributes.Add("ColumnIndex", Convert.ToString(s.Position.ColumnIndex));
                 image.Attributes.Add("RowIndex", Convert.ToString(s.Position.RowIndex));
                 image.Attributes.Add("Status", Convert.ToString(s.Status));
                 image.Attributes.Add("Price", Convert.ToString(price));
@@ -291,7 +346,14 @@ namespace Tickets
 
                 cell.Controls.Add(image);
                 cell.Controls.Add(tb);
-                i++;
+            }
+
+            foreach (TableCell c in Table1.Rows[curTableRow].Cells)
+            {
+                if (c.Controls == null || c.Controls.Count == 0)
+                {
+                    c.CssClass = "";
+                }
             }
 
         }

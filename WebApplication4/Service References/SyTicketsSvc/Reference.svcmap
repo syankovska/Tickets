@@ -20,15 +20,16 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://127.0.0.1:8080/SyTickets/SyTickets.Sessions.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8080/SyTickets/SyTickets.Sessions.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SyTickets.xsd" MetadataType="Schema" ID="71420d2d-3e95-4549-b5c1-7ca34fc27710" SourceId="1" SourceUrl="http://sy-ws:8080/SyTickets/SyTickets.Sessions.svc?xsd=xsd1" />
-    <MetadataFile FileName="SyTickets.disco" MetadataType="Disco" ID="601223e7-0bea-4075-bd03-8166df2cc93e" SourceId="1" SourceUrl="http://sy-ws:8080/SyTickets/SyTickets.Sessions.svc?disco" />
-    <MetadataFile FileName="SyTickets1.xsd" MetadataType="Schema" ID="bc02f9f4-2577-44ee-8ab6-343e1060ffba" SourceId="1" SourceUrl="http://sy-ws:8080/SyTickets/SyTickets.Sessions.svc?xsd=xsd2" />
-    <MetadataFile FileName="SyTickets2.xsd" MetadataType="Schema" ID="27b6b30b-af13-4493-be85-b2275be0f6ec" SourceId="1" SourceUrl="http://sy-ws:8080/SyTickets/SyTickets.Sessions.svc?xsd=xsd3" />
-    <MetadataFile FileName="Sessions.wsdl" MetadataType="Wsdl" ID="f72d8dc3-a954-4fa0-8c25-e3a4c4adc9af" SourceId="1" SourceUrl="http://sy-ws:8080/SyTickets/SyTickets.Sessions.svc?wsdl" />
-    <MetadataFile FileName="SyTickets3.xsd" MetadataType="Schema" ID="0a9d8ee2-e8c0-4545-9363-181d31a94a99" SourceId="1" SourceUrl="http://sy-ws:8080/SyTickets/SyTickets.Sessions.svc?xsd=xsd0" />
+    <MetadataFile FileName="SyTickets.xsd" MetadataType="Schema" ID="3aefe024-d136-40cf-9c95-e3c835f5f5a6" SourceId="1" SourceUrl="http://localhost:8080/SyTickets/SyTickets.Sessions.svc?xsd=xsd0" />
+    <MetadataFile FileName="SyTickets1.xsd" MetadataType="Schema" ID="f70739ef-ba1f-43df-acd0-9112173dcbf9" SourceId="1" SourceUrl="http://localhost:8080/SyTickets/SyTickets.Sessions.svc?xsd=xsd1" />
+    <MetadataFile FileName="SyTickets2.xsd" MetadataType="Schema" ID="e0d63701-4a2c-4674-9c5a-7fc8077aeb1d" SourceId="1" SourceUrl="http://localhost:8080/SyTickets/SyTickets.Sessions.svc?xsd=xsd4" />
+    <MetadataFile FileName="SyTickets3.xsd" MetadataType="Schema" ID="3770abc9-ffb7-4b31-b988-b68000a473d7" SourceId="1" SourceUrl="http://localhost:8080/SyTickets/SyTickets.Sessions.svc?xsd=xsd5" />
+    <MetadataFile FileName="SyTickets4.xsd" MetadataType="Schema" ID="35cb4dca-bf9a-4912-b3a2-141c034dd4e8" SourceId="1" SourceUrl="http://localhost:8080/SyTickets/SyTickets.Sessions.svc?xsd=xsd3" />
+    <MetadataFile FileName="Sessions.wsdl" MetadataType="Wsdl" ID="474b9f09-5884-4b4f-93bd-2fdb64c0ab39" SourceId="1" SourceUrl="http://localhost:8080/SyTickets/SyTickets.Sessions.svc?wsdl" />
+    <MetadataFile FileName="SyTickets5.xsd" MetadataType="Schema" ID="ea35d34a-04cf-4571-9eae-005c8425757f" SourceId="1" SourceUrl="http://localhost:8080/SyTickets/SyTickets.Sessions.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

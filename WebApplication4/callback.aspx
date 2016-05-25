@@ -39,7 +39,11 @@
               <asp:TextBox ID="TextBox5" runat="server" Width="330px"></asp:TextBox>
         </td>
         </tr> 
- 
+        <tr>
+            <td> 
+                   <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/GenPDFHandle.ashx">Download your tickets</asp:HyperLink>
+            </td>
+ </tr>
  </table>
 
  </asp:Content>

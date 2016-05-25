@@ -12,7 +12,28 @@ namespace Tickets
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(Request.QueryString["IsBooking"]))
+            {
+                Session["IsBooking"] = (Request.QueryString["IsBooking"]);
+            }
 
+            if (!string.IsNullOrEmpty(Request.QueryString["FilmId"]))
+            {
+
+                Session["FilmId"] = Request.QueryString["FilmId"];
+
+                using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
+                {
+                     var  f  = sc.GetAllFilms().Where(x => x.ScheduledFilmId.Equals(Convert.ToString(Session["FilmId"]))).FirstOrDefault();
+                    if (f != null)
+                        Session["FilmName"] = f.Title;
+                    //HO00000184
+                }
+
+            }
+             
+
+            
             if (Session["UserSessionId"] != null)
                 using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
                     sc.CancelOrder(Convert.ToString(Session["UserSessionId"]));

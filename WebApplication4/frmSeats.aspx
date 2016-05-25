@@ -32,7 +32,7 @@
                  <asp:Label ID="LabelResponseResult" runat="server"></asp:Label>
              </td>
              <td style="width:20%" >
-                 &nbsp;</td>
+                           </td>
         </tr>
        </table>
 

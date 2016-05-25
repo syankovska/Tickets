@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="callback.aspx" />
+    <Content Include="frmBooking.aspx" />
     <Content Include="frmCinemas.aspx" />
     <Content Include="frmCustomerInfo.aspx" />
     <Content Include="frmCustomInfoTransfer.aspx" />
@@ -71,9 +72,8 @@
     <Content Include="frmSessions.aspx" />
     <Content Include="frmSessionsByCinema.aspx" />
     <Content Include="frmTicketTypes.aspx" />
+    <Content Include="GenPDFHandle.ashx" />
     <None Include="Properties\PublishProfiles\Sy profile 1.pubxml" />
-    <None Include="Service References\SyTicketsSvc\Sessions.wsdl" />
-    <None Include="Service References\SyTicketsSvc\SyTickets.disco" />
     <None Include="Service References\SyTicketsSvc\configuration91.svcinfo" />
     <None Include="Service References\SyTicketsSvc\configuration.svcinfo" />
     <None Include="Service References\SyTicketsSvc\Reference.svcmap">
@@ -88,18 +88,6 @@
     <Content Include="sofa16_red.png" />
     <Content Include="sofa16_yellow.png" />
     <Content Include="web.config" />
-    <None Include="Service References\SyTicketsSvc\SyTickets.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SyTicketsSvc\SyTickets1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SyTicketsSvc\SyTickets2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SyTicketsSvc\SyTickets3.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Service References\SyTicketsSvc\Tickets.SyTicketsSvc.SyCinema.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -124,6 +112,28 @@
     <Content Include="Service References\SyTicketsSvc\Tickets.SyTicketsSvc.TaslinkStatusResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\SyTicketsSvc\Tickets.SyTicketsSvc.SyCompleteOrderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\SyTicketsSvc\Sessions.wsdl" />
+    <None Include="Service References\SyTicketsSvc\SyTickets.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SyTicketsSvc\SyTickets1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SyTicketsSvc\SyTickets2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SyTicketsSvc\SyTickets3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SyTicketsSvc\SyTickets4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SyTicketsSvc\SyTickets5.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -141,6 +151,13 @@
     </Compile>
     <Compile Include="callback.aspx.designer.cs">
       <DependentUpon>callback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmBooking.aspx.cs">
+      <DependentUpon>frmBooking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmBooking.aspx.designer.cs">
+      <DependentUpon>frmBooking.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmCinemas.aspx.cs">
       <DependentUpon>frmCinemas.aspx</DependentUpon>
@@ -211,6 +228,9 @@
     </Compile>
     <Compile Include="frmTicketTypes.aspx.designer.cs">
       <DependentUpon>frmTicketTypes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GenPDFHandle.ashx.cs">
+      <DependentUpon>GenPDFHandle.ashx</DependentUpon>
     </Compile>
     <Compile Include="GridPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,15 +1,12 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site1.Master" CodeBehind="frmCinemas.aspx.cs" Inherits="Tickets.frmCinemas" %>
 <asp:Content  ID="Content1" ContentPlaceHolderID="MainContent"
     runat="server">
-        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" Caption="Select Cinema" CellPadding="4" DataKeyNames="ID" DataSourceID="ObjectDataSource1" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" AutoGenerateColumns="False" AutoGenerateSelectButton="True">
+        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" Caption="Select Film" CellPadding="4" DataKeyNames="ID" DataSourceID="ObjectDataSource1" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" AutoGenerateColumns="False" AutoGenerateSelectButton="True">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
                 <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" Visible="False" />
                 <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
                 <asp:BoundField DataField="Address1" HeaderText="Address1" SortExpression="Address1" />
-                <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
-                <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" />
-                <asp:BoundField DataField="LoyaltyCode" HeaderText="LoyaltyCode" SortExpression="LoyaltyCode" />
                 <asp:BoundField DataField="NameAlt" HeaderText="NameAlt" SortExpression="NameAlt" />
                 <asp:BoundField DataField="ParkingInfo" HeaderText="ParkingInfo" SortExpression="ParkingInfo" />
                 <asp:BoundField DataField="PublicTransport" HeaderText="PublicTransport" SortExpression="PublicTransport" />
@@ -25,6 +22,11 @@
             <SortedDescendingCellStyle BackColor="#FFFDF8" />
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
-        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetCinemas" TypeName="Tickets.SyTicketsSvc.SessionsClient"></asp:ObjectDataSource>
- </asp:Content>  
+        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetCinemasByCity" TypeName="Tickets.SyTicketsSvc.SessionsClient">
+            <SelectParameters>
+                <asp:SessionParameter Name="city" SessionField="CityName" Type="String" />
+            </SelectParameters>
+        </asp:ObjectDataSource>
+   
+        </asp:Content>  
  

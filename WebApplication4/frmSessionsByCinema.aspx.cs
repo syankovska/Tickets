@@ -12,6 +12,25 @@ namespace Tickets
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(Request.QueryString["IsBooking"]))
+            {
+                Session["IsBooking"] = (Request.QueryString["IsBooking"]);
+            }
+
+            if (!string.IsNullOrEmpty(Request.QueryString["CinemaId"]))
+            {
+
+                Session["CinemaId"] = Request.QueryString["CinemaId"];
+
+                using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
+                {
+                    var c = sc.GetCinemas().Where(x => x.ID.Equals(Convert.ToString(Session["CinemaId"]))).FirstOrDefault();
+                    if (c != null)
+                        Session["CinemaName"] = c.Name;
+                    //HO00000184
+                }
+
+            }
 
             if (Session["UserSessionId"] != null)
                 using (SyTicketsSvc.SessionsClient sc = new SessionsClient())

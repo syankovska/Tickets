@@ -24,6 +24,7 @@
    border-color:#CCCCCC;
    border-style:Solid;
    white-space:nowrap;
+   text-align:center;
 }
 .cell0000000001{
    position: relative;
@@ -33,6 +34,7 @@
    border-color:#CCCCCC;
    border-style:Solid;
    white-space:nowrap;
+      text-align:center;
 }
 .cell0000000002{
    position: relative;
@@ -42,6 +44,67 @@
    border-color:#dbbbbc;
    border-style:Solid;
    white-space:nowrap;
+      text-align:center;
+}
+.cell0000000003{
+   position: relative;
+   left: 2px;
+   background-color:  #8bbdf0;
+   border-width: 2px;
+   border-color:#CCCCCC;
+   border-style:Solid;
+   white-space:nowrap;
+      text-align:center;
+}
+.cell0000000004{
+   position: relative;
+   left: 2px;
+   background-color: #63b76d;
+   border-width: 2px;
+   border-color:#CCCCCC;
+   border-style:Solid;
+   white-space:nowrap;
+      text-align:center;
+}
+.cell0000000005{
+   position: relative;
+   left: 2px;
+   background-color: #dbbbbc;
+   border-width: 2px;
+   border-color:#dbbbbc;
+   border-style:Solid;
+   white-space:nowrap;
+      text-align:center;
+}
+.cell0000000006{
+   position: relative;
+   left: 2px;
+   background-color:  #8bbdf0;
+   border-width: 2px;
+   border-color:#CCCCCC;
+   border-style:Solid;
+   white-space:nowrap;
+      text-align:center;
+}
+.cell0000000007{
+   position: relative;
+   left: 2px;
+   background-color: #63b76d;
+   border-width: 2px;
+   border-color:#CCCCCC;
+   border-style:Solid;
+   white-space:nowrap;
+      text-align:center;
+}
+.cell0000000008{
+   position: relative;
+   left: 2px;
+   background-color: #dbbbbc;
+   border-width: 2px;
+   border-color:#dbbbbc;
+   border-style:Solid;
+   white-space:nowrap;
+      text-align:center;
 }
 .celllux{
    position: relative;

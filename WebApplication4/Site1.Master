@@ -149,6 +149,9 @@
             <asp:DropDownList ID="DropDownListDate" runat="server" AutoPostBack="True" DataSourceID="ObjectDataSource1" OnDataBound="DropDownListDate_DataBound1" OnSelectedIndexChanged="DropDownListDate_SelectedIndexChanged">
             </asp:DropDownList>
             <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetDistinctSessionDate" TypeName="Tickets.SyTicketsSvc.SessionsClient"></asp:ObjectDataSource>
+            <asp:DropDownList ID="DropDownListCity" runat="server" AutoPostBack="True" DataSourceID="ObjectDataSource2" OnDataBound="DropDownListCity_DataBound" OnSelectedIndexChanged="DropDownListCity_SelectedIndexChanged">
+            </asp:DropDownList>
+            <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" SelectMethod="GetCities" TypeName="Tickets.SyTicketsSvc.SessionsClient"></asp:ObjectDataSource>
         </td>     
   <td>
          <asp:Label ID="LabelCinema" runat="server" Text=''><%=Session["CinemaName"]%></asp:Label><br/>

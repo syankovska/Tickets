@@ -206,6 +206,11 @@ namespace Tickets.SyTicketsSvc {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="SyFilm", Namespace="http://schemas.datacontract.org/2004/07/SyTickets")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.IO.MemoryStream))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.IO.Stream))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.MarshalByRefObject))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<System.DateTime>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tickets.SyTicketsSvc.SySession>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tickets.SyTicketsSvc.SySession))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tickets.SyTicketsSvc.SyFilm>))]
@@ -224,6 +229,7 @@ namespace Tickets.SyTicketsSvc {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tickets.SyTicketsSvc.SyRow))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tickets.SyTicketsSvc.SySeat>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tickets.SyTicketsSvc.SySeat))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tickets.SyTicketsSvc.SyCompleteOrderResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tickets.SyTicketsSvc.SySelectedSeat>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tickets.SyTicketsSvc.SySelectedSeat))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tickets.SyTicketsSvc.TaslinkOrderResponse))]
@@ -231,8 +237,6 @@ namespace Tickets.SyTicketsSvc {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tickets.SyTicketsSvc.TaslinkReverseResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tickets.SyTicketsSvc.SyCinema>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tickets.SyTicketsSvc.SyCinema))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<System.DateTime>))]
     public partial class SyFilm : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -390,6 +394,11 @@ namespace Tickets.SyTicketsSvc {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="SyRestTicketType", Namespace="http://schemas.datacontract.org/2004/07/SyTickets")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.IO.MemoryStream))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.IO.Stream))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.MarshalByRefObject))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<System.DateTime>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tickets.SyTicketsSvc.SySession>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tickets.SyTicketsSvc.SySession))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tickets.SyTicketsSvc.SyFilm>))]
@@ -408,6 +417,7 @@ namespace Tickets.SyTicketsSvc {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tickets.SyTicketsSvc.SyRow))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tickets.SyTicketsSvc.SySeat>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tickets.SyTicketsSvc.SySeat))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tickets.SyTicketsSvc.SyCompleteOrderResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tickets.SyTicketsSvc.SySelectedSeat>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tickets.SyTicketsSvc.SySelectedSeat))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tickets.SyTicketsSvc.TaslinkOrderResponse))]
@@ -415,8 +425,6 @@ namespace Tickets.SyTicketsSvc {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tickets.SyTicketsSvc.TaslinkReverseResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<Tickets.SyTicketsSvc.SyCinema>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Tickets.SyTicketsSvc.SyCinema))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<System.DateTime>))]
     public partial class SyRestTicketType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -1575,6 +1583,67 @@ namespace Tickets.SyTicketsSvc {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SyCompleteOrderResponse", Namespace="http://schemas.datacontract.org/2004/07/SyTickets")]
+    [System.SerializableAttribute()]
+    public partial class SyCompleteOrderResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PrintStreamField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ResultField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PrintStream {
+            get {
+                return this.PrintStreamField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PrintStreamField, value) != true)) {
+                    this.PrintStreamField = value;
+                    this.RaisePropertyChanged("PrintStream");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Result {
+            get {
+                return this.ResultField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ResultField, value) != true)) {
+                    this.ResultField = value;
+                    this.RaisePropertyChanged("Result");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="SySelectedSeat", Namespace="http://schemas.datacontract.org/2004/07/SyTickets")]
     [System.SerializableAttribute()]
     public partial class SySelectedSeat : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -2218,7 +2287,7 @@ namespace Tickets.SyTicketsSvc {
         string CancelOrder(string userSessionId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/CompleteOrder", ReplyAction="http://tempuri.org/ISessions/CompleteOrderResponse")]
-        string CompleteOrder(string userSessionId, int paymentValueCents, string bookingNotes, bool unpaidBooking, string customerEmail, string customerPhone, string customerName);
+        Tickets.SyTicketsSvc.SyCompleteOrderResponse CompleteOrder(string userSessionId, int paymentValueCents, string bookingNotes, bool unpaidBooking, string customerEmail, string customerPhone, string customerName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/SySetSelectedSeats", ReplyAction="http://tempuri.org/ISessions/SySetSelectedSeatsResponse")]
         string SySetSelectedSeats(string userSessionId, string cinemaId, string sessionId, System.Collections.Generic.List<Tickets.SyTicketsSvc.SySelectedSeat> sySelectedSeats);
@@ -2238,11 +2307,20 @@ namespace Tickets.SyTicketsSvc {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GetCinemaByCinemaID", ReplyAction="http://tempuri.org/ISessions/GetCinemaByCinemaIDResponse")]
         string GetCinemaByCinemaID(string cinemaId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GetCinemasByCity", ReplyAction="http://tempuri.org/ISessions/GetCinemasByCityResponse")]
+        System.Collections.Generic.List<Tickets.SyTicketsSvc.SyCinema> GetCinemasByCity(string city);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GetFilmByScheduledFilmId", ReplyAction="http://tempuri.org/ISessions/GetFilmByScheduledFilmIdResponse")]
         string GetFilmByScheduledFilmId(string scheduledFilmId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GetDistinctSessionDate", ReplyAction="http://tempuri.org/ISessions/GetDistinctSessionDateResponse")]
         System.Collections.Generic.List<System.DateTime> GetDistinctSessionDate();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GeneratePdf", ReplyAction="http://tempuri.org/ISessions/GeneratePdfResponse")]
+        System.IO.MemoryStream GeneratePdf(string printStream);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GetCities", ReplyAction="http://tempuri.org/ISessions/GetCitiesResponse")]
+        System.Collections.Generic.List<string> GetCities();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2312,7 +2390,7 @@ namespace Tickets.SyTicketsSvc {
             return base.Channel.CancelOrder(userSessionId);
         }
         
-        public string CompleteOrder(string userSessionId, int paymentValueCents, string bookingNotes, bool unpaidBooking, string customerEmail, string customerPhone, string customerName) {
+        public Tickets.SyTicketsSvc.SyCompleteOrderResponse CompleteOrder(string userSessionId, int paymentValueCents, string bookingNotes, bool unpaidBooking, string customerEmail, string customerPhone, string customerName) {
             return base.Channel.CompleteOrder(userSessionId, paymentValueCents, bookingNotes, unpaidBooking, customerEmail, customerPhone, customerName);
         }
         
@@ -2340,12 +2418,24 @@ namespace Tickets.SyTicketsSvc {
             return base.Channel.GetCinemaByCinemaID(cinemaId);
         }
         
+        public System.Collections.Generic.List<Tickets.SyTicketsSvc.SyCinema> GetCinemasByCity(string city) {
+            return base.Channel.GetCinemasByCity(city);
+        }
+        
         public string GetFilmByScheduledFilmId(string scheduledFilmId) {
             return base.Channel.GetFilmByScheduledFilmId(scheduledFilmId);
         }
         
         public System.Collections.Generic.List<System.DateTime> GetDistinctSessionDate() {
             return base.Channel.GetDistinctSessionDate();
+        }
+        
+        public System.IO.MemoryStream GeneratePdf(string printStream) {
+            return base.Channel.GeneratePdf(printStream);
+        }
+        
+        public System.Collections.Generic.List<string> GetCities() {
+            return base.Channel.GetCities();
         }
     }
 }

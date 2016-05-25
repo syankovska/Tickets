@@ -38,13 +38,20 @@ namespace Tickets
                     if (TextBox2.Text.Trim().Equals("Удачное выполнение транзакции"))
                     {
                         if (Session["UserSessionId"] != null)
-                            TextBox5.Text = sc.CompleteOrder(Convert.ToString(Session["UserSessionId"]),
+                        {
+                            SyCompleteOrderResponse syCompleteOrderResponse = new SyCompleteOrderResponse();
+                            syCompleteOrderResponse = sc.CompleteOrder(Convert.ToString(Session["UserSessionId"]),
                                Convert.ToInt32(Session["TotalValueCents"]), taslinkStatusResponse.oid, false,
                                Convert.ToString(Session["CustomerEmail"]),
                                Convert.ToString(Session["CustomerName"]),
                                Convert.ToString(Session["CustomerPhone"])
                                );
-                      else TextBox5.Text = "No session UserSessionId";
+                            TextBox5.Text = syCompleteOrderResponse.Result;
+                            HyperLink1.NavigateUrl = "~/GenPDFHandle.ashx?printStream=" + syCompleteOrderResponse.PrintStream;
+
+                           // Response.Redirect("~/GenPDFHandle.ashx");
+                        }
+                         else TextBox5.Text = "No session UserSessionId";
 
 
                     }
