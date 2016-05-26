@@ -2271,6 +2271,11 @@ namespace Tickets.SyTicketsSvc {
             "onse")]
         System.Collections.Generic.List<Tickets.SyTicketsSvc.SySession> GetSessionsByScheduledFilmAndSessionBusinessDate(string scheduledFilmId, System.DateTime sessionBusinessDate);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GetSessionsByScheduledFilmAndSessionBusinessDateAndC" +
+            "ity", ReplyAction="http://tempuri.org/ISessions/GetSessionsByScheduledFilmAndSessionBusinessDateAndC" +
+            "ityResponse")]
+        System.Collections.Generic.List<Tickets.SyTicketsSvc.SySession> GetSessionsByScheduledFilmAndSessionBusinessDateAndCity(string scheduledFilm, System.DateTime sessionBusinessDate, string city);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GetAllFilms", ReplyAction="http://tempuri.org/ISessions/GetAllFilmsResponse")]
         System.Collections.Generic.List<Tickets.SyTicketsSvc.SyFilm> GetAllFilms();
         
@@ -2321,6 +2326,12 @@ namespace Tickets.SyTicketsSvc {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GetCities", ReplyAction="http://tempuri.org/ISessions/GetCitiesResponse")]
         System.Collections.Generic.List<string> GetCities();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GetFilmsByCity", ReplyAction="http://tempuri.org/ISessions/GetFilmsByCityResponse")]
+        System.Collections.Generic.List<Tickets.SyTicketsSvc.SyFilm> GetFilmsByCity(string city);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GetDistinctSessionDateByCity", ReplyAction="http://tempuri.org/ISessions/GetDistinctSessionDateByCityResponse")]
+        System.Collections.Generic.List<System.DateTime> GetDistinctSessionDateByCity(string city);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2368,6 +2379,10 @@ namespace Tickets.SyTicketsSvc {
         
         public System.Collections.Generic.List<Tickets.SyTicketsSvc.SySession> GetSessionsByScheduledFilmAndSessionBusinessDate(string scheduledFilmId, System.DateTime sessionBusinessDate) {
             return base.Channel.GetSessionsByScheduledFilmAndSessionBusinessDate(scheduledFilmId, sessionBusinessDate);
+        }
+        
+        public System.Collections.Generic.List<Tickets.SyTicketsSvc.SySession> GetSessionsByScheduledFilmAndSessionBusinessDateAndCity(string scheduledFilm, System.DateTime sessionBusinessDate, string city) {
+            return base.Channel.GetSessionsByScheduledFilmAndSessionBusinessDateAndCity(scheduledFilm, sessionBusinessDate, city);
         }
         
         public System.Collections.Generic.List<Tickets.SyTicketsSvc.SyFilm> GetAllFilms() {
@@ -2436,6 +2451,14 @@ namespace Tickets.SyTicketsSvc {
         
         public System.Collections.Generic.List<string> GetCities() {
             return base.Channel.GetCities();
+        }
+        
+        public System.Collections.Generic.List<Tickets.SyTicketsSvc.SyFilm> GetFilmsByCity(string city) {
+            return base.Channel.GetFilmsByCity(city);
+        }
+        
+        public System.Collections.Generic.List<System.DateTime> GetDistinctSessionDateByCity(string city) {
+            return base.Channel.GetDistinctSessionDateByCity(city);
         }
     }
 }

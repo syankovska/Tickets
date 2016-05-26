@@ -18,9 +18,13 @@ namespace Tickets
                 SiteMap.CurrentNode.Title.Equals("Выбор кинотеатра"))
             {
                 DropDownListDate.Visible = true;
+                DropDownListCity.Visible = true;
             }
-            else DropDownListDate.Visible = false; 
-
+            else
+            { 
+                DropDownListDate.Visible = false;
+                DropDownListCity.Visible = false;
+            }
 
             if (!SiteMap.CurrentNode.Equals(SiteMap.RootNode))
             {
@@ -55,17 +59,27 @@ namespace Tickets
                 using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
                 {
 
+                    if (Session["CityName"] != null)
+                        ObjectDataSource1.SelectParameters["city"].DefaultValue =
+                     Session["CityName"].ToString();
+
+
                     if (Session["TicketDate"] == null)
                     {
 
-                        DateTime ticketDate = sc.GetDistinctSessionDate().OrderBy(x => x).FirstOrDefault();
+                        DateTime ticketDate = sc.GetDistinctSessionDateByCity(Session["CityName"].ToString()).OrderBy(x => x).FirstOrDefault();
                         if (ticketDate != null)
                         {
                             DropDownListDate.SelectedIndex = 0;
                             Session["TicketDate"] = DropDownListDate.SelectedValue;
                         }
                     }
-                    else DropDownListDate.SelectedValue = Convert.ToString(Session["TicketDate"]);
+                    else
+                    {
+                        DropDownListDate.SelectedValue = Convert.ToString(Session["TicketDate"]);
+                    }
+
+
 
                 }
         }

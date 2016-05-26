@@ -48,17 +48,16 @@ namespace Tickets
                 Session["TicketDate"].ToString();
 
                 if (Session["FilmId"] != null)
-                    ObjectDataSource1.SelectParameters["scheduledFilmId"].DefaultValue =
+                    ObjectDataSource1.SelectParameters["scheduledFilm"].DefaultValue =
                  Session["FilmId"].ToString();
 
-
+                if (Session["CityName"] != null)
+                    ObjectDataSource1.SelectParameters["city"].DefaultValue =
+                 Session["CityName"].ToString();
             }
         }
 
-        public void SetDate()
-        {
-            return;
-        }
+    
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -25,12 +25,13 @@
             <SortedDescendingCellStyle BackColor="#FFFDF8" />
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
-        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetSessionsByScheduledFilmAndSessionBusinessDate" TypeName="Tickets.SyTicketsSvc.SessionsClient" ConvertNullToDBNull="True">
-            <SelectParameters>
-                <asp:Parameter DefaultValue="Session(&quot;FilmId&quot;)" Name="scheduledFilmId" Type="String" />
-                <asp:SessionParameter DefaultValue="" Name="sessionBusinessDate" SessionField="TicketDate" Type="DateTime" />
-            </SelectParameters>
         
+        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetSessionsByScheduledFilmAndSessionBusinessDateAndCity" TypeName="Tickets.SyTicketsSvc.SessionsClient">
+            <SelectParameters>
+                <asp:Parameter DefaultValue="Session(&quot;FilmId&quot;)" Name="scheduledFilm" Type="String" />
+                <asp:SessionParameter DefaultValue="" Name="sessionBusinessDate" SessionField="TicketDate" Type="DateTime" />
+                <asp:SessionParameter DefaultValue="" Name="city" SessionField="CityName" Type="String" />
+            </SelectParameters>
         </asp:ObjectDataSource>
-
+        
 </asp:Content>

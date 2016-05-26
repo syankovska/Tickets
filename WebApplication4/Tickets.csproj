@@ -87,8 +87,32 @@
     <Content Include="sofa16_green.png" />
     <Content Include="sofa16_red.png" />
     <Content Include="sofa16_yellow.png" />
-    <Content Include="web.config" />
+    <Content Include="web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Service References\SyTicketsSvc\Sessions.wsdl" />
+    <None Include="Service References\SyTicketsSvc\SyTickets.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SyTicketsSvc\SyTickets1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SyTicketsSvc\SyTickets2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SyTicketsSvc\SyTickets3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SyTicketsSvc\SyTickets4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SyTicketsSvc\SyTickets5.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Service References\SyTicketsSvc\Tickets.SyTicketsSvc.SyCinema.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SyTicketsSvc\Tickets.SyTicketsSvc.SyCompleteOrderResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\SyTicketsSvc\Tickets.SyTicketsSvc.SyFilm.datasource">
@@ -112,28 +136,6 @@
     <Content Include="Service References\SyTicketsSvc\Tickets.SyTicketsSvc.TaslinkStatusResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\SyTicketsSvc\Tickets.SyTicketsSvc.SyCompleteOrderResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <None Include="Service References\SyTicketsSvc\Sessions.wsdl" />
-    <None Include="Service References\SyTicketsSvc\SyTickets.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SyTicketsSvc\SyTickets1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SyTicketsSvc\SyTickets2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SyTicketsSvc\SyTickets3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SyTicketsSvc\SyTickets4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SyTicketsSvc\SyTickets5.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

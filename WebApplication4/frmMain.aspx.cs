@@ -55,6 +55,10 @@ namespace Tickets
             if (Session["UserSessionId"] != null)
                 using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
                     sc.CancelOrder(Convert.ToString(Session["UserSessionId"]));
+
+            if (Session["CityName"] != null)
+                ObjectDataSource1.SelectParameters["city"].DefaultValue =
+             Session["CityName"].ToString();
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)

@@ -20,6 +20,10 @@
             <SortedDescendingCellStyle BackColor="#FFFDF8" />
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
-        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetAllFilms" TypeName="Tickets.SyTicketsSvc.SessionsClient"></asp:ObjectDataSource>
+        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetFilmsByCity" TypeName="Tickets.SyTicketsSvc.SessionsClient">
+            <SelectParameters>
+                <asp:SessionParameter Name="city" SessionField="CityName" Type="String" />
+            </SelectParameters>
+</asp:ObjectDataSource>
    
 </asp:Content>

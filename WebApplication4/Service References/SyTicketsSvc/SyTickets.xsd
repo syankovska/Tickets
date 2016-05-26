@@ -73,6 +73,22 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetSessionsByScheduledFilmAndSessionBusinessDateAndCity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="scheduledFilm" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sessionBusinessDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="city" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSessionsByScheduledFilmAndSessionBusinessDateAndCityResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetSessionsByScheduledFilmAndSessionBusinessDateAndCityResult" nillable="true" type="q6:ArrayOfSySession" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetAllFilms">
     <xs:complexType>
       <xs:sequence />
@@ -81,7 +97,7 @@
   <xs:element name="GetAllFilmsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetAllFilmsResult" nillable="true" type="q6:ArrayOfSyFilm" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetAllFilmsResult" nillable="true" type="q7:ArrayOfSyFilm" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -95,7 +111,7 @@
   <xs:element name="GetFilmsByCinemaResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetFilmsByCinemaResult" nillable="true" type="q7:ArrayOfSyFilm" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetFilmsByCinemaResult" nillable="true" type="q8:ArrayOfSyFilm" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -110,7 +126,7 @@
   <xs:element name="GetTicketTypesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetTicketTypesResult" nillable="true" type="q8:ArrayOfSyRestTicketType" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetTicketTypesResult" nillable="true" type="q9:ArrayOfSyRestTicketType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -119,7 +135,7 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="cinemaid" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="sessionid" nillable="true" type="xs:string" />
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="syTicketTypes" nillable="true" type="q9:ArrayOfSyTicketType" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="syTicketTypes" nillable="true" type="q10:ArrayOfSyTicketType" />
         <xs:element minOccurs="0" name="processOrderValue" type="xs:boolean" />
         <xs:element minOccurs="0" name="userSelectedSeatingSupported" type="xs:boolean" />
         <xs:element minOccurs="0" name="skipAutoAllocation" type="xs:boolean" />
@@ -129,7 +145,7 @@
   <xs:element name="GetRestAddTicketsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetRestAddTicketsResult" nillable="true" type="q10:SySeatLayoutData" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetRestAddTicketsResult" nillable="true" type="q11:SySeatLayoutData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -163,7 +179,7 @@
   <xs:element name="CompleteOrderResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="CompleteOrderResult" nillable="true" type="q11:SyCompleteOrderResponse" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="CompleteOrderResult" nillable="true" type="q12:SyCompleteOrderResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -173,7 +189,7 @@
         <xs:element minOccurs="0" name="userSessionId" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="cinemaId" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string" />
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="sySelectedSeats" nillable="true" type="q12:ArrayOfSySelectedSeat" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="sySelectedSeats" nillable="true" type="q13:ArrayOfSySelectedSeat" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -195,7 +211,7 @@
   <xs:element name="GetTaslinkOrderResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetTaslinkOrderResult" nillable="true" type="q13:TaslinkOrderResponse" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetTaslinkOrderResult" nillable="true" type="q14:TaslinkOrderResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -209,7 +225,7 @@
   <xs:element name="GetTaslinkStatusResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetTaslinkStatusResult" nillable="true" type="q14:TaslinkStatusResponse" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetTaslinkStatusResult" nillable="true" type="q15:TaslinkStatusResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -223,7 +239,7 @@
   <xs:element name="GetTaslinkReverseResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetTaslinkReverseResult" nillable="true" type="q15:TaslinkReverseResponse" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetTaslinkReverseResult" nillable="true" type="q16:TaslinkReverseResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -235,7 +251,7 @@
   <xs:element name="GetCinemasResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetCinemasResult" nillable="true" type="q16:ArrayOfSyCinema" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetCinemasResult" nillable="true" type="q17:ArrayOfSyCinema" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -263,7 +279,7 @@
   <xs:element name="GetCinemasByCityResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetCinemasByCityResult" nillable="true" type="q17:ArrayOfSyCinema" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetCinemasByCityResult" nillable="true" type="q18:ArrayOfSyCinema" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -289,7 +305,7 @@
   <xs:element name="GetDistinctSessionDateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetDistinctSessionDateResult" nillable="true" type="q18:ArrayOfdateTime" />
+        <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetDistinctSessionDateResult" nillable="true" type="q19:ArrayOfdateTime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -303,7 +319,7 @@
   <xs:element name="GeneratePdfResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/System.IO" minOccurs="0" name="GeneratePdfResult" nillable="true" type="q19:MemoryStream" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/System.IO" minOccurs="0" name="GeneratePdfResult" nillable="true" type="q20:MemoryStream" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -315,7 +331,35 @@
   <xs:element name="GetCitiesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetCitiesResult" nillable="true" type="q20:ArrayOfstring" />
+        <xs:element xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetCitiesResult" nillable="true" type="q21:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFilmsByCity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="city" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFilmsByCityResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetFilmsByCityResult" nillable="true" type="q22:ArrayOfSyFilm" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDistinctSessionDateByCity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="city" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDistinctSessionDateByCityResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetDistinctSessionDateByCityResult" nillable="true" type="q23:ArrayOfdateTime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
