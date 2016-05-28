@@ -4,7 +4,7 @@
 <asp:Content  ID="Content1" ContentPlaceHolderID="MainContent"
     runat="server">
 
-        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" Caption="Select Session" CellPadding="4" DataSourceID="ObjectDataSource1" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" AutoGenerateColumns="False" AutoGenerateSelectButton="True" DataKeyNames="SessionId,CinemaId">
+        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" Caption="Select Session" CellPadding="4" DataSourceID="ObjectDataSource1" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" AutoGenerateColumns="False" AutoGenerateSelectButton="True" DataKeyNames="SessionId,CinemaId,ScheduledFilmId">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
                 <asp:BoundField DataField="SessionId" HeaderText="SessionId" SortExpression="SessionId" Visible="False" />

@@ -59,6 +59,18 @@ namespace Tickets
             if (Session["CityName"] != null)
                 ObjectDataSource1.SelectParameters["city"].DefaultValue =
              Session["CityName"].ToString();
+
+
+            if (!IsPostBack)
+            {
+                Session["CinemaId"] = null;
+                Session["CinemaName"] = null;
+                Session["FilmId"] = null;
+                Session["FilmName"] = null;
+                Session["SessionId"] = null;
+   
+               Session["ShowTime"] = null;
+             }
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)

@@ -47,10 +47,12 @@ namespace Tickets
             {
                 using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
             {
-                            List <SyRestTicketType> restTicketType = sc.GetTicketTypes(Session["CinemaId"].ToString(),
-                                                                          Session["SessionId"].ToString());
+                   // List<SyRestTicketType> restTicketType = new List<SyRestTicketType>();
 
-                SyTicketsSvc.SySeatLayoutData sySeatLayoutData = new SyTicketsSvc.SySeatLayoutData();
+                      List <SyRestTicketType> restTicketType = sc.GetTicketTypes(Session["CinemaId"].ToString(),
+                                                                     Session["SessionId"].ToString());
+
+                    SyTicketsSvc.SySeatLayoutData sySeatLayoutData = new SyTicketsSvc.SySeatLayoutData();
 
                 bool processOrderValue = false;
                 bool userSelectedSeatingSupported = true;

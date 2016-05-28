@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SyTickets" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SyTickets" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8080/SyTickets/SyTickets.Sessions.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ArrayOfSySession">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SySession" nillable="true" type="tns:SySession" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSySession" nillable="true" type="tns:ArrayOfSySession" />
+  <xs:complexType name="SySession">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CinemaId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CinemaName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ScheduledFilmId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ScheduledFilmTitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SeatsAvailable" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SessionAttributesNames" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="SessionBusinessDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SessionId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Showtime" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SySession" nillable="true" type="tns:SySession" />
+  <xs:complexType name="ArrayOfSyFilm">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SyFilm" nillable="true" type="tns:SyFilm" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSyFilm" nillable="true" type="tns:ArrayOfSyFilm" />
+  <xs:complexType name="SyFilm">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AllowTicketSales" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CinemaId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OpeningDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ScheduledFilmId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TrailerUrl" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SyFilm" nillable="true" type="tns:SyFilm" />
+  <xs:complexType name="ArrayOfSyRestTicketType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SyRestTicketType" nillable="true" type="tns:SyRestTicketType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSyRestTicketType" nillable="true" type="tns:ArrayOfSyRestTicketType" />
+  <xs:complexType name="SyRestTicketType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AreaCategoryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CinemaId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DiscountsAvailable" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsChildOnlyTicket" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LoyaltyBalanceTypeId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LoyaltyPointsCost" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LoyaltyQuantityAvailable" type="xs:int" />
+      <xs:element minOccurs="0" name="LoyaltyRecognitionId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PriceInCents" type="xs:int" />
+      <xs:element minOccurs="0" name="QuantityAvailablePerOrder" type="xs:int" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SalesChannels" nillable="true" type="q2:ArrayOfstring" />
+      <xs:element minOccurs="0" name="TicketTypeCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SyRestTicketType" nillable="true" type="tns:SyRestTicketType" />
+  <xs:complexType name="ArrayOfSyTicketType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SyTicketType" nillable="true" type="tns:SyTicketType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSyTicketType" nillable="true" type="tns:ArrayOfSyTicketType" />
+  <xs:complexType name="SyTicketType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PriceInCents" type="xs:int" />
+      <xs:element minOccurs="0" name="Qty" type="xs:int" />
+      <xs:element minOccurs="0" name="TicketTypeCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SyTicketType" nillable="true" type="tns:SyTicketType" />
+  <xs:complexType name="SySeatLayoutData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AreaCategories" nillable="true" type="tns:ArrayOfSyAreaCategory" />
+      <xs:element minOccurs="0" name="Areas" nillable="true" type="tns:ArrayOfSyArea" />
+      <xs:element minOccurs="0" name="AvailableSeats" type="xs:int" />
+      <xs:element minOccurs="0" name="BoundaryLeft" type="xs:int" />
+      <xs:element minOccurs="0" name="BoundaryRight" type="xs:int" />
+      <xs:element minOccurs="0" name="BoundaryTop" type="xs:int" />
+      <xs:element minOccurs="0" name="ErrorDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExtendedResultCode" type="xs:int" />
+      <xs:element minOccurs="0" name="Result" type="xs:int" />
+      <xs:element minOccurs="0" name="ScreenStart" type="xs:double" />
+      <xs:element minOccurs="0" name="ScreenWidth" type="xs:int" />
+      <xs:element minOccurs="0" name="TotalOrderCount" type="xs:int" />
+      <xs:element minOccurs="0" name="TotalValueCents" type="xs:int" />
+      <xs:element minOccurs="0" name="UserSessionId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VistaBookingNumber" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SySeatLayoutData" nillable="true" type="tns:SySeatLayoutData" />
+  <xs:complexType name="ArrayOfSyAreaCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SyAreaCategory" nillable="true" type="tns:SyAreaCategory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSyAreaCategory" nillable="true" type="tns:ArrayOfSyAreaCategory" />
+  <xs:complexType name="SyAreaCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AreaCategoryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SeatsAllocatedCount" type="xs:int" />
+      <xs:element minOccurs="0" name="SeatsNotAllocatedCount" type="xs:int" />
+      <xs:element minOccurs="0" name="SeatsToAllocate" type="xs:int" />
+      <xs:element minOccurs="0" name="SelectedSeats" nillable="true" type="tns:ArrayOfSyPosition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SyAreaCategory" nillable="true" type="tns:SyAreaCategory" />
+  <xs:complexType name="ArrayOfSyPosition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SyPosition" nillable="true" type="tns:SyPosition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSyPosition" nillable="true" type="tns:ArrayOfSyPosition" />
+  <xs:complexType name="SyPosition">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AreaNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="ColumnIndex" type="xs:int" />
+      <xs:element minOccurs="0" name="RowIndex" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SyPosition" nillable="true" type="tns:SyPosition" />
+  <xs:complexType name="ArrayOfSyArea">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SyArea" nillable="true" type="tns:SyArea" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSyArea" nillable="true" type="tns:ArrayOfSyArea" />
+  <xs:complexType name="SyArea">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AreaCategoryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ColumnCount" type="xs:int" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DescriptionAlt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HasSofaSeatingEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Height" type="xs:int" />
+      <xs:element minOccurs="0" name="IsAllocatedSeating" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Left" type="xs:double" />
+      <xs:element minOccurs="0" name="Number" type="xs:int" />
+      <xs:element minOccurs="0" name="NumberOfSeats" type="xs:int" />
+      <xs:element minOccurs="0" name="RowCount" type="xs:int" />
+      <xs:element minOccurs="0" name="Rows" nillable="true" type="tns:ArrayOfSyRow" />
+      <xs:element minOccurs="0" name="Top" type="xs:int" />
+      <xs:element minOccurs="0" name="Width" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SyArea" nillable="true" type="tns:SyArea" />
+  <xs:complexType name="ArrayOfSyRow">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SyRow" nillable="true" type="tns:SyRow" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSyRow" nillable="true" type="tns:ArrayOfSyRow" />
+  <xs:complexType name="SyRow">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PhysicalName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Seats" nillable="true" type="tns:ArrayOfSySeat" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SyRow" nillable="true" type="tns:SyRow" />
+  <xs:complexType name="ArrayOfSySeat">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SySeat" nillable="true" type="tns:SySeat" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSySeat" nillable="true" type="tns:ArrayOfSySeat" />
+  <xs:complexType name="SySeat">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Position" nillable="true" type="tns:SyPosition" />
+      <xs:element minOccurs="0" name="Status" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SySeat" nillable="true" type="tns:SySeat" />
+  <xs:complexType name="SyCompleteOrderResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PrintStream" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SyCompleteOrderResponse" nillable="true" type="tns:SyCompleteOrderResponse" />
+  <xs:complexType name="ArrayOfSySelectedSeat">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SySelectedSeat" nillable="true" type="tns:SySelectedSeat" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSySelectedSeat" nillable="true" type="tns:ArrayOfSySelectedSeat" />
+  <xs:complexType name="SySelectedSeat">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AreaCategoryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AreaNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="ColumnIndex" type="xs:int" />
+      <xs:element minOccurs="0" name="RowIndex" type="xs:int" />
+      <xs:element minOccurs="0" name="TicketTypeCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SySelectedSeat" nillable="true" type="tns:SySelectedSeat" />
+  <xs:complexType name="TaslinkOrderResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="oid" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sign" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tranid" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TaslinkOrderResponse" nillable="true" type="tns:TaslinkOrderResponse" />
+  <xs:complexType name="TaslinkStatusResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="amount" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="approval_code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="oid" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="respcode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="reverse" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sign" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tranid" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TaslinkStatusResponse" nillable="true" type="tns:TaslinkStatusResponse" />
+  <xs:complexType name="TaslinkReverseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="oid" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="revrespcode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sign" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tranid" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TaslinkReverseResponse" nillable="true" type="tns:TaslinkReverseResponse" />
+  <xs:complexType name="ArrayOfSyCinema">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SyCinema" nillable="true" type="tns:SyCinema" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSyCinema" nillable="true" type="tns:ArrayOfSyCinema" />
+  <xs:complexType name="SyCinema">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HOPK" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LoyaltyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NameAlt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParkingInfo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PublicTransport" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SyCinema" nillable="true" type="tns:SyCinema" />
+</xs:schema>

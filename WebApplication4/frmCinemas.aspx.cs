@@ -16,9 +16,16 @@ namespace Tickets
                if (Session["CityName"] != null)
                     ObjectDataSource1.SelectParameters["city"].DefaultValue =
                  Session["CityName"].ToString();
-
-
+                if (Session["FilmId"] != null)
+                    ObjectDataSource1.SelectParameters["scheduledFilmId"].DefaultValue =
+                 Session["FilmId"].ToString();
             }
+
+            //if (!IsPostBack)
+            //{
+            //    Session["FilmId"] = null;
+            //    Session["FilmName"] = null;
+            //}
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -26,7 +33,7 @@ namespace Tickets
             string selKey = (sender as GridView).SelectedDataKey.Value.ToString();
             Session["CinemaId"] = selKey;
 
-            Session["CinemaName"] = (sender as GridView).SelectedRow.Cells[1].Text;
+            Session["CinemaName"] = (sender as GridView).SelectedRow.Cells[2].Text;
             Master.FindControl("HyperLinkNext").Visible = true;
         }
     }

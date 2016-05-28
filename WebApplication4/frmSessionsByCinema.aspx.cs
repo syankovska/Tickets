@@ -59,9 +59,10 @@ namespace Tickets
             {
                 Session["SessionId"] = GridView1.SelectedDataKey.Values[0];
                 Session["CinemaId"] = GridView1.SelectedDataKey.Values[1];
+                Session["FilmId"] = GridView1.SelectedDataKey.Values[2];
             }
 
-            Session["CinemaName"] = (sender as GridView).SelectedRow.Cells[4].Text;
+            Session["FilmName"] = (sender as GridView).SelectedRow.Cells[4].Text;
             Session["ShowTime"] = (sender as GridView).SelectedRow.Cells[6].Text;
 
             Master.FindControl("HyperLinkNext").Visible = true;

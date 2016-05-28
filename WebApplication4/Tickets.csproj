@@ -109,6 +109,9 @@
     <None Include="Service References\SyTicketsSvc\SyTickets5.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\SyTicketsSvc\SyTickets6.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Service References\SyTicketsSvc\Tickets.SyTicketsSvc.SyCinema.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>

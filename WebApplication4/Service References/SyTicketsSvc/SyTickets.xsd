@@ -2,7 +2,7 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8080/SyTickets/SyTickets.Sessions.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SyTickets" />
   <xs:import schemaLocation="http://localhost:8080/SyTickets/SyTickets.Sessions.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:import schemaLocation="http://localhost:8080/SyTickets/SyTickets.Sessions.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.IO" />
+  <xs:import schemaLocation="http://localhost:8080/SyTickets/SyTickets.Sessions.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/System.IO" />
   <xs:element name="GetAllSessions">
     <xs:complexType>
       <xs:sequence />
@@ -283,17 +283,31 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetFilmByScheduledFilmId">
+  <xs:element name="GetFilmTitleByScheduledFilmId">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="scheduledFilmId" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetFilmByScheduledFilmIdResponse">
+  <xs:element name="GetFilmTitleByScheduledFilmIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetFilmByScheduledFilmIdResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="GetFilmTitleByScheduledFilmIdResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFilmsByScheduledFilmId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="scheduledFilmId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFilmsByScheduledFilmIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetFilmsByScheduledFilmIdResult" nillable="true" type="q19:ArrayOfSyFilm" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -305,7 +319,7 @@
   <xs:element name="GetDistinctSessionDateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetDistinctSessionDateResult" nillable="true" type="q19:ArrayOfdateTime" />
+        <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetDistinctSessionDateResult" nillable="true" type="q20:ArrayOfdateTime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -319,7 +333,7 @@
   <xs:element name="GeneratePdfResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/System.IO" minOccurs="0" name="GeneratePdfResult" nillable="true" type="q20:MemoryStream" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/System.IO" minOccurs="0" name="GeneratePdfResult" nillable="true" type="q21:MemoryStream" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -331,7 +345,7 @@
   <xs:element name="GetCitiesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetCitiesResult" nillable="true" type="q21:ArrayOfstring" />
+        <xs:element xmlns:q22="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetCitiesResult" nillable="true" type="q22:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -345,7 +359,7 @@
   <xs:element name="GetFilmsByCityResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetFilmsByCityResult" nillable="true" type="q22:ArrayOfSyFilm" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetFilmsByCityResult" nillable="true" type="q23:ArrayOfSyFilm" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -359,7 +373,22 @@
   <xs:element name="GetDistinctSessionDateByCityResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetDistinctSessionDateByCityResult" nillable="true" type="q23:ArrayOfdateTime" />
+        <xs:element xmlns:q24="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetDistinctSessionDateByCityResult" nillable="true" type="q24:ArrayOfdateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCinemasByCityAndScheduledFilmId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="city" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="scheduledFilmId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCinemasByCityAndScheduledFilmIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/SyTickets" minOccurs="0" name="GetCinemasByCityAndScheduledFilmIdResult" nillable="true" type="q25:ArrayOfSyCinema" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

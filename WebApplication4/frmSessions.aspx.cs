@@ -55,6 +55,12 @@ namespace Tickets
                     ObjectDataSource1.SelectParameters["city"].DefaultValue =
                  Session["CityName"].ToString();
             }
+
+            if (!IsPostBack)
+            {
+                Session["SessionId"] = null;
+                Session["ShowTime"] = null;
+            }
         }
 
     
@@ -69,6 +75,7 @@ namespace Tickets
             {
                 Session["SessionId"] =  GridView1.SelectedDataKey.Values[0];
                 Session["CinemaId"] = GridView1.SelectedDataKey.Values[1];
+                Session["FilmId"] = GridView1.SelectedDataKey.Values[2];
             }
 
             Session["CinemaName"] = (sender as GridView).SelectedRow.Cells[4].Text;
