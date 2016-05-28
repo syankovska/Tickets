@@ -105,7 +105,7 @@ namespace Tickets
                             Session["CityName"] = DropDownListCity.SelectedValue;
                         }
                     }
-                    else DropDownListDate.SelectedValue = Convert.ToString(Session["TicketDate"]);
+                    else DropDownListCity.SelectedValue = Convert.ToString(Session["CityName"]);
 
                 }
         }
