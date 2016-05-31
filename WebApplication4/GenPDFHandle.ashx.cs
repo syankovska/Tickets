@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using Tickets.SyTicketsSvc;
 
@@ -9,15 +10,16 @@ namespace Tickets
     /// <summary>
     /// Summary description for GenPDFHandle
     /// </summary>
-    public class GenPDFHandle : IHttpHandler
+    public class GenPDFHandle : IHttpHandler, System.Web.SessionState.IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
         {
-            if (!string.IsNullOrEmpty(context.Request.QueryString["printStream"]))
-            {
-                string printStream = context.Request.QueryString["printStream"];
-
+         
+            if (context.Session["PrintStream"] != null)
+            { 
+                string printStream  = context.Session["PrintStream"].ToString();
+            
                 context.Response.AddHeader("content-disposition", "attachment; filename=Tickets.pdf");
                 context.Response.ContentType = "application/pdf";
 
@@ -25,22 +27,9 @@ namespace Tickets
                 using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
                 {
 
-                    //string clientName, string cinemaName, string filmName, string showTime
-                    pdfStm = sc.GeneratePdf(printStream);
+                    pdfStm = sc.GeneratePdf(printStream,Convert.ToInt32(context.Session["TotalOrderCount"]));
                 }
 
-                //          context.Response.WriteFile("~/Requirements Specification_Payments_Multiplex_ENG.pdf");
-
-                //byte[] fileBytes = null;
-                //byte[] buffer = new byte[4096];
-                //System.IO.MemoryStream memoryStream = new System.IO.MemoryStream();
-                //int chunkSize = 0;
-                //do
-                //{
-                //    chunkSize = fileStream.Read(buffer, 0, buffer.Length);
-                //    memoryStream.Write(buffer, 0, chunkSize);
-                //} while (chunkSize != 0);
-                //fileBytes = memoryStream.ToArray();
 
                 pdfStm.Seek(0, System.IO.SeekOrigin.Begin);
 

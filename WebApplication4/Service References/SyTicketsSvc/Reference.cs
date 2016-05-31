@@ -2391,7 +2391,7 @@ namespace Tickets.SyTicketsSvc {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GeneratePdf", ReplyAction="http://tempuri.org/ISessions/GeneratePdfResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(System.ServiceModel.FaultException), Action="http://tempuri.org/ISessions/GeneratePdfFaultExceptionFault", Name="FaultException", Namespace="http://schemas.datacontract.org/2004/07/System.ServiceModel")]
-        System.IO.MemoryStream GeneratePdf(string printStream);
+        System.IO.MemoryStream GeneratePdf(string printStream, int totalOrderCount);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GetCities", ReplyAction="http://tempuri.org/ISessions/GetCitiesResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(System.ServiceModel.FaultException), Action="http://tempuri.org/ISessions/GetCitiesFaultExceptionFault", Name="FaultException", Namespace="http://schemas.datacontract.org/2004/07/System.ServiceModel")]
@@ -2526,8 +2526,8 @@ namespace Tickets.SyTicketsSvc {
             return base.Channel.GetDistinctSessionDate();
         }
         
-        public System.IO.MemoryStream GeneratePdf(string printStream) {
-            return base.Channel.GeneratePdf(printStream);
+        public System.IO.MemoryStream GeneratePdf(string printStream, int totalOrderCount) {
+            return base.Channel.GeneratePdf(printStream, totalOrderCount);
         }
         
         public System.Collections.Generic.List<string> GetCities() {

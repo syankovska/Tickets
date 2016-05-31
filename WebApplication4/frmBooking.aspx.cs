@@ -23,16 +23,26 @@ namespace Tickets
                         syCompleteOrderResponse = sc.CompleteOrder(Convert.ToString(Session["UserSessionId"]),
                            Convert.ToInt32(Session["TotalValueCents"]), "", true,
                            Convert.ToString(Session["CustomerEmail"]),
-                           Convert.ToString(Session["CustomerName"]),
-                           Convert.ToString(Session["CustomerPhone"])
-                           );
+                           Convert.ToString(Session["CustomerPhone"]),
+                           Convert.ToString(Session["CustomerName"])
+                                                      );
                         TextBox5.Text = syCompleteOrderResponse.Result;
-                        HyperLink1.NavigateUrl = "~/GenPDFHandle.ashx?printStream=" + syCompleteOrderResponse.PrintStream;
-                    }
+                       Session["PrintStream"] = syCompleteOrderResponse.PrintStream;
+                    
+                    //SetPrintStream(syCompleteOrderResponse.PrintStream);
+                    //  HttpContext.Current.Session["PrintStream"] = syCompleteOrderResponse.PrintStream;
+                }
                     // Response.Redirect("~/GenPDFHandle.ashx");
                 }
                 else TextBox5.Text = "No session UserSessionId";
                        
+        }
+
+        [System.Web.Services.WebMethod(enableSession: true)]
+        public static bool SetPrintStream(string printStream)
+        {
+            HttpContext.Current.Session["PrintStream"] = printStream.ToString(); 
+            return true;
         }
     }
 }
