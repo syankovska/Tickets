@@ -18,6 +18,7 @@ namespace Tickets
             {
                 Session["IsBooking"] = (Request.QueryString["IsBooking"]);
             }
+       
 
             if (!string.IsNullOrEmpty(Request.QueryString["SessionId"]) && !string.IsNullOrEmpty(Request.QueryString["CinemaId"]))
             {

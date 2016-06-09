@@ -12,29 +12,35 @@ namespace Tickets
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["IsBooking"] == null || Convert.ToInt32(Session["IsBooking"]) == 0)
-             using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
+            if (Convert.ToInt32(Session["IsBookingCust"]) == 0 || Convert.ToInt32(Session["IsBooking"]) == 0)
+                try
                 {
-
-                    int totalValueCents = Convert.ToInt32(Session["TotalValueCents"]) / 100;
-
-                    try
-                    {
-                        TaslinkOrderResponse taslinkOrderResponse = new TaslinkOrderResponse();
-                        taslinkOrderResponse = sc.GetTaslinkOrder(Convert.ToString(totalValueCents), HttpContext.Current.Request.Url.AbsoluteUri);
-
-                        Response.Redirect("http://multiplex.taslink.com.ua/?oid=" + taslinkOrderResponse.oid);
-                    }
-                    catch (TimeoutException)
+                    using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
                     {
 
+                        int totalValueCents = Convert.ToInt32(Session["TotalValueCents"]) / 100;
+
+                        try
+                        {
+                            TaslinkOrderResponse taslinkOrderResponse = new TaslinkOrderResponse();
+                            taslinkOrderResponse = sc.GetTaslinkOrder(Convert.ToString(totalValueCents), HttpContext.Current.Request.Url.AbsoluteUri);
+
+                            Response.Redirect("http://multiplex.taslink.com.ua/?oid=" + taslinkOrderResponse.oid);
+                        }
+                        catch (System.ServiceModel.FaultException)
+                        {
+                            Session["Error"] = "Taslink is not accessable";
+                            Server.Transfer("~/frmError.aspx");
+                        }
                     }
                 }
-            else
+                catch (System.ServiceModel.CommunicationException)
+                { }
+              else
             {
-                Server.Transfer("~/frmBooking.aspx");
-            }
-         
-        }
+                    Server.Transfer("~/frmBooking.aspx");
+                }
+
+                }
     }
 }

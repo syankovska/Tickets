@@ -14,29 +14,40 @@ namespace Tickets
         {
             Label5.Text = "Complete Order Result";
 
-            
-                if (Session["UserSessionId"] != null)
+
+            if (Session["UserSessionId"] != null)
+            {
+                using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
                 {
-                    using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
+                    SyCompleteOrderResponse syCompleteOrderResponse = new SyCompleteOrderResponse();
+                    syCompleteOrderResponse = sc.CompleteOrder(Convert.ToString(Session["UserSessionId"]),
+                       Convert.ToInt32(Session["TotalValueCents"]), "", true,
+                       Convert.ToString(Session["CustomerEmail"]),
+                       Convert.ToString(Session["CustomerPhone"]),
+                       Convert.ToString(Session["CustomerName"])
+                                                  );
+                    TextBox5.Text = syCompleteOrderResponse.Result;
+
+                    if (TextBox5.Text.Equals("OK"))
                     {
-                        SyCompleteOrderResponse syCompleteOrderResponse = new SyCompleteOrderResponse();
-                        syCompleteOrderResponse = sc.CompleteOrder(Convert.ToString(Session["UserSessionId"]),
-                           Convert.ToInt32(Session["TotalValueCents"]), "", true,
-                           Convert.ToString(Session["CustomerEmail"]),
-                           Convert.ToString(Session["CustomerPhone"]),
-                           Convert.ToString(Session["CustomerName"])
-                                                      );
-                        TextBox5.Text = syCompleteOrderResponse.Result;
-                       Session["PrintStream"] = syCompleteOrderResponse.PrintStream;
-                    
+                        Session["PrintStream"] = syCompleteOrderResponse.PrintStream;
+                        HyperLinkDownload.Visible = true;
+                    }
+                    else HyperLinkDownload.Visible = false;
+
+
+
                     //SetPrintStream(syCompleteOrderResponse.PrintStream);
                     //  HttpContext.Current.Session["PrintStream"] = syCompleteOrderResponse.PrintStream;
                 }
-                    // Response.Redirect("~/GenPDFHandle.ashx");
-                }
-                else TextBox5.Text = "No session UserSessionId";
-                       
-        }
+                // Response.Redirect("~/GenPDFHandle.ashx");
+            }
+            else
+            {
+                TextBox5.Text = "No session UserSessionId";
+                HyperLinkDownload.Visible = false;
+            }
+            }
 
         [System.Web.Services.WebMethod(enableSession: true)]
         public static bool SetPrintStream(string printStream)

@@ -21,6 +21,11 @@ namespace Tickets
                 Session["IsBooking"] = (Request.QueryString["IsBooking"]);
                 booking = "&&IsBooking=" + Session["IsBooking"];
             }
+            else
+            {
+                Session["IsBooking"] = -1;
+                booking = "&&IsBooking=" + Session["IsBooking"];
+            }
 
             if (!string.IsNullOrEmpty(Request.QueryString["SessionId"]) && !string.IsNullOrEmpty(Request.QueryString["CinemaId"]))
             {
@@ -28,8 +33,8 @@ namespace Tickets
                 Session["SessionId"] = (Request.QueryString["SessionId"]);
                 Session["CinemaId"] = (Request.QueryString["CinemaId"]);
 
-              
-                Server.Transfer("~/frmSeats.aspx?" + "SessionId=" + Session["SessionId"]+"&&" + "CinemaId=" + Session["CinemaId"]+ booking);
+
+                Response.Redirect("~/frmSeats.aspx?" + "SessionId=" + Session["SessionId"]+"&&" + "CinemaId=" + Session["CinemaId"]+ booking);
                 Master.FindControl("SiteMapPath1").Visible = false;
                 //http://localhost:4349/frmSeats.aspx?SessionId=10706&&CinemaId=0000000002
 
@@ -38,14 +43,14 @@ namespace Tickets
             {
 
                 Session["CinemaId"] = (Request.QueryString["CinemaId"]);
-                Server.Transfer("~/frmSessionsByCinema.aspx?" + "CinemaId=" + Session["CinemaId"]+ booking);
+                Response.Redirect("~/frmSessionsByCinema.aspx?" + "CinemaId=" + Session["CinemaId"]+ booking);
                 //0000000002
             }
             else if (!string.IsNullOrEmpty(Request.QueryString["FilmId"]))
             {
             
                 Session["FilmId"] = (Request.QueryString["FilmId"]);
-                Server.Transfer("~/frmSessions.aspx?"+"FilmId="+ Session["FilmId"]+ booking);
+                Response.Redirect("~/frmSessions.aspx?"+"FilmId="+ Session["FilmId"]+ booking);
                //HO00000184
             }
 
@@ -79,8 +84,9 @@ namespace Tickets
             GridViewRow row = GridView1.SelectedRow;
             Session["FilmId"] = selKey;
             Session["FilmName"] = Convert.ToString(row.Cells[2].Text);
-            Master.FindControl("HyperLinkNext").Visible = true;
-
+            // Master.FindControl("HyperLinkNext").Visible = true;
+            Response.Redirect((Master.FindControl("HyperLinkNext") as HyperLink).NavigateUrl);
+            
         }
     }
 

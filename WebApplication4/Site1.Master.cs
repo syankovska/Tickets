@@ -18,13 +18,23 @@ namespace Tickets
                 SiteMap.CurrentNode.Title.Equals("Выбор кинотеатра"))
             {
                 DropDownListDate.Visible = true;
-                DropDownListCity.Visible = true;
             }
             else
             { 
                 DropDownListDate.Visible = false;
+            }
+
+            if (SiteMap.CurrentNode.Title.Equals("Выбор фильма") ||
+                SiteMap.CurrentNode.Title.Equals("Выбор кинотеатра")||
+                SiteMap.CurrentNode.Title.Equals("Выбор сеанса") && Session["CinemaId"] == null)
+            {
+                DropDownListCity.Visible = true;
+            }
+            else
+            {
                 DropDownListCity.Visible = false;
             }
+
 
             if (!SiteMap.CurrentNode.Equals(SiteMap.RootNode))
             {

@@ -16,6 +16,7 @@ namespace Tickets
             {
                 Session["IsBooking"] = (Request.QueryString["IsBooking"]);
             }
+        
 
             if (!string.IsNullOrEmpty(Request.QueryString["FilmId"]))
             {
@@ -81,7 +82,8 @@ namespace Tickets
             Session["CinemaName"] = (sender as GridView).SelectedRow.Cells[4].Text;
             Session["ShowTime"] = (sender as GridView).SelectedRow.Cells[6].Text;
 
-            Master.FindControl("HyperLinkNext").Visible = true;
+           // Master.FindControl("HyperLinkNext").Visible = true;
+            Response.Redirect((Master.FindControl("HyperLinkNext") as HyperLink).NavigateUrl);
         }
 
     }

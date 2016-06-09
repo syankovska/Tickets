@@ -47,13 +47,26 @@ namespace Tickets
                                 Convert.ToString(Session["CustomerName"])
                                );
                             TextBox5.Text = syCompleteOrderResponse.Result;
-                            Session["PrintStream"] = syCompleteOrderResponse.PrintStream;
+                            if (TextBox5.Text.Equals("OK"))
+                            { 
+                                    Session["PrintStream"] = syCompleteOrderResponse.PrintStream;
+                            HyperLinkDownload.Visible = true;
+                            }
+                            else HyperLinkDownload.Visible = false;
                         }
-                         else TextBox5.Text = "No session UserSessionId";
+                        else
+                        {
+                            TextBox5.Text = "No session UserSessionId";
+                            HyperLinkDownload.Visible = false;
+                        }
 
 
                     }
-                    else TextBox5.Text = "Ошибка оплаты";
+                    else
+                    {
+                        TextBox5.Text = "Ошибка оплаты";
+                        HyperLinkDownload.Visible = false;
+                    }
 
                 }
 

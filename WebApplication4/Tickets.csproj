@@ -65,6 +65,7 @@
     <Content Include="frmCinemas.aspx" />
     <Content Include="frmCustomerInfo.aspx" />
     <Content Include="frmCustomInfoTransfer.aspx" />
+    <Content Include="frmError.aspx" />
     <Content Include="frmMain.aspx" />
     <Content Include="frmPayment.aspx" />
     <Content Include="frmSeats.aspx" />
@@ -184,6 +185,13 @@
     </Compile>
     <Compile Include="frmCustomInfoTransfer.aspx.designer.cs">
       <DependentUpon>frmCustomInfoTransfer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmError.aspx.cs">
+      <DependentUpon>frmError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmError.aspx.designer.cs">
+      <DependentUpon>frmError.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmMain.aspx.cs">
       <DependentUpon>frmMain.aspx</DependentUpon>

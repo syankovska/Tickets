@@ -34,7 +34,8 @@ namespace Tickets
             Session["CinemaId"] = selKey;
 
             Session["CinemaName"] = (sender as GridView).SelectedRow.Cells[2].Text;
-            Master.FindControl("HyperLinkNext").Visible = true;
+            //Master.FindControl("HyperLinkNext").Visible = true;
+            Response.Redirect((Master.FindControl("HyperLinkNext") as HyperLink).NavigateUrl);
         }
     }
 }
