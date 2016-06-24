@@ -16,23 +16,37 @@ namespace Tickets
             if (!IsPostBack)
             {
                 if (Session["CustomerName"] != null)
-                    TextBoxName.Text = Convert.ToString(Session["CustomerName"]);
+                    // TextBoxName.Text = Convert.ToString(Session["CustomerName"]);
+                    TextBoxName.Text = string.Empty;
                 if (Session["CustomerPhone"] != null)
-                    TextBoxPhone.Text = Convert.ToString(Session["CustomerPhone"]);
+                    // TextBoxPhone.Text = Convert.ToString(Session["CustomerPhone"]);
+                    TextBoxPhone.Text = string.Empty;
                 if (Session["CustomerEmail"] != null)
-                    TextBoxEmail.Text = Convert.ToString(Session["CustomerEmail"]);
+                    // TextBoxEmail.Text = Convert.ToString(Session["CustomerEmail"]);
+                    TextBoxEmail.Text = string.Empty;
 
                 if (Convert.ToInt32(Session["IsBooking"]) == -1)
                 {
                     LabelIsBooking.Visible = true;
                     CheckBoxIsBooking.Visible = true;
-
+                }
+                else if (Convert.ToInt32(Session["IsBooking"]) == 1)
+                {
+                    LabelIsBooking.Visible = true;
+                    CheckBoxIsBooking.Visible = true;
+                    CheckBoxIsBooking.Checked = true;
                 }
                 else
                 {
                     LabelIsBooking.Visible = false;
                     CheckBoxIsBooking.Visible = false;
                 }
+                /*else
+                {
+                    LabelIsBooking.Visible = false;
+                    CheckBoxIsBooking.Visible = false;
+                }*/
+                Session["IsBookingCust"] = Session["IsBooking"];
                 if (Convert.ToInt32(Session["IsBookingCust"]) == 0)
                     (Master.FindControl("HyperLinkNext") as HyperLink).Text = "Оплата>>";
                 else if (Convert.ToInt32(Session["IsBookingCust"]) == 1)
