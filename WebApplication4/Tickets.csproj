@@ -64,7 +64,6 @@
     <Content Include="frmBooking.aspx" />
     <Content Include="frmCinemas.aspx" />
     <Content Include="frmCustomerInfo.aspx" />
-    <Content Include="frmCustomInfoTransfer.aspx" />
     <Content Include="frmError.aspx" />
     <Content Include="frmMain.aspx" />
     <Content Include="frmPayment.aspx" />
@@ -74,6 +73,7 @@
     <Content Include="frmSessionsByCinema.aspx" />
     <Content Include="frmTicketTypes.aspx" />
     <Content Include="GenPDFHandle.ashx" />
+    <Content Include="WebForm1.aspx" />
     <None Include="Properties\PublishProfiles\Sy profile 1.pubxml" />
     <None Include="Service References\SyTicketsSvc\configuration91.svcinfo" />
     <None Include="Service References\SyTicketsSvc\configuration.svcinfo" />
@@ -179,13 +179,6 @@
     <Compile Include="frmCustomerInfo.aspx.designer.cs">
       <DependentUpon>frmCustomerInfo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="frmCustomInfoTransfer.aspx.cs">
-      <DependentUpon>frmCustomInfoTransfer.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="frmCustomInfoTransfer.aspx.designer.cs">
-      <DependentUpon>frmCustomInfoTransfer.aspx</DependentUpon>
-    </Compile>
     <Compile Include="frmError.aspx.cs">
       <DependentUpon>frmError.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -258,6 +251,13 @@
     </Compile>
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

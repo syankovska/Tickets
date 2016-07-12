@@ -32,14 +32,12 @@ namespace Tickets
                 }
 
             }
-             
 
-            
-            if (Session["UserSessionId"] != null)
-                using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
-                    sc.CancelOrder(Convert.ToString(Session["UserSessionId"]));
+            if (Session["FilmId"] != null)
+            { 
 
-            if (ObjectDataSource1 != null)
+
+                if (ObjectDataSource1 != null)
             {
                 if (Session["TicketDate"] == null)
 
@@ -59,8 +57,23 @@ namespace Tickets
 
             if (!IsPostBack)
             {
+                
+                if (Session["OrderUserSessionId"] != null)
+                    using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
+                        sc.CancelOrder(Convert.ToString(Session["OrderUserSessionId"]));
+
                 Session["SessionId"] = null;
                 Session["ShowTime"] = null;
+                Session["OrderUserSessionId"] = null;
+                Session["UserSessionId"] = null;
+                Session["TotalValueCents"] = null;
+                Session["TotalOrderCount"] = null;
+                Session["SelectedSeats"] = null;
+            }
+            }
+            else
+            {
+                Server.Transfer("~/frmError.aspx");
             }
         }
 

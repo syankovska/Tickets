@@ -11,19 +11,25 @@ namespace Tickets
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            (Master.FindControl("HyperLinkNext") as HyperLink).Visible = true;
-            (Master.FindControl("HyperLinkNext") as HyperLink).Enabled = false;
+            if (Session["TotalValueCents"] == null)
+                            Server.Transfer("~/frmError.aspx");
+
+
             if (!IsPostBack)
             {
+
+                (Master.FindControl("HyperLinkNext") as HyperLink).Visible = true;
+                (Master.FindControl("HyperLinkNext") as HyperLink).Attributes.Add("onclick", "hrefCustomerInfoSubmitClick(HyperLinkNext)");
+                (Master.FindControl("HyperLinkNext") as HyperLink).Attributes.Add("href", "#");
+
                 if (Session["CustomerName"] != null)
-                    // TextBoxName.Text = Convert.ToString(Session["CustomerName"]);
-                    TextBoxName.Text = string.Empty;
+                    TextBoxName.Text = Convert.ToString(Session["CustomerName"]);
+
                 if (Session["CustomerPhone"] != null)
-                    // TextBoxPhone.Text = Convert.ToString(Session["CustomerPhone"]);
-                    TextBoxPhone.Text = string.Empty;
+                    TextBoxPhone.Text = Convert.ToString(Session["CustomerPhone"]);
+
                 if (Session["CustomerEmail"] != null)
-                    // TextBoxEmail.Text = Convert.ToString(Session["CustomerEmail"]);
-                    TextBoxEmail.Text = string.Empty;
+                    TextBoxEmail.Text = Convert.ToString(Session["CustomerEmail"]);
 
                 if (Convert.ToInt32(Session["IsBooking"]) == -1)
                 {
@@ -41,54 +47,28 @@ namespace Tickets
                     LabelIsBooking.Visible = false;
                     CheckBoxIsBooking.Visible = false;
                 }
-                /*else
-                {
-                    LabelIsBooking.Visible = false;
-                    CheckBoxIsBooking.Visible = false;
-                }*/
+
                 Session["IsBookingCust"] = Session["IsBooking"];
                 if (Convert.ToInt32(Session["IsBookingCust"]) == 0)
+                {
                     (Master.FindControl("HyperLinkNext") as HyperLink).Text = "Оплата>>";
+                    (Master.FindControl("HyperLinkNext") as HyperLink).Attributes.Add("href", "#");
+
+                }
                 else if (Convert.ToInt32(Session["IsBookingCust"]) == 1)
+                {
                     (Master.FindControl("HyperLinkNext") as HyperLink).Text = "Бронирование>>";
+                    (Master.FindControl("HyperLinkNext") as HyperLink).Attributes.Add("href", "#");
+                }
             }
 
      
-
-                      
-
             if (!TextBoxPhone.Text.Trim().Equals("") && !TextBoxEmail.Text.Trim().Equals(""))
             {
                 (Master.FindControl("HyperLinkNext") as HyperLink).Enabled = true;
             }
         }
 
-        protected void TextBoxPhone_TextChanged(object sender, EventArgs e)
-        {
-            if (!TextBoxPhone.Text.Trim().Equals("") && !TextBoxEmail.Text.Trim().Equals(""))
-            {
-                Session["CustomerName"] = TextBoxName.Text;
-                Session["CustomerPhone"] = TextBoxPhone.Text;
-                Session["CustomerEmail"] = TextBoxEmail.Text;
-
-         
-                (Master.FindControl("HyperLinkNext") as HyperLink).Enabled  = true;
-
-            } else
-                (Master.FindControl("HyperLinkNext") as HyperLink).Enabled = false;
-
-            if (CheckBoxIsBooking.Checked)
-            {
-                Session["IsBookingCust"] = 1;
-                (Master.FindControl("HyperLinkNext") as HyperLink).Text = "Бронирование>>";
-            }
-            else
-            {
-                Session["IsBookingCust"] = 0;
-                (Master.FindControl("HyperLinkNext") as HyperLink).Text = "Оплата>>";
-            }
-
-        }
 
         protected void CheckBoxIsBooking_CheckedChanged(object sender, EventArgs e)
         {
@@ -96,15 +76,40 @@ namespace Tickets
                 if (CheckBoxIsBooking.Checked)
                 {
                     Session["IsBookingCust"] = 1;
-                    (Master.FindControl("HyperLinkNext") as HyperLink).Text = "Бронирование>>";
+                  (Master.FindControl("HyperLinkNext") as HyperLink).Text = "Бронирование>>";
+
                 }
                 else
                 {
                     Session["IsBookingCust"] = 0;
                     (Master.FindControl("HyperLinkNext") as HyperLink).Text = "Оплата>>";
                 }
-            
+
           
+                Session["CustomerName"] = TextBoxName.Text;
+                Session["CustomerPhone"] = TextBoxPhone.Text;
+                Session["CustomerEmail"] = TextBoxEmail.Text;
+
+
+        }
+
+        protected void ButtonSubmit_Click(object sender, EventArgs e)
+        {
+            if (CheckBoxIsBooking.Checked)
+            {
+                Session["IsBookingCust"] = 1;
+            }
+            else
+            {
+                Session["IsBookingCust"] = 0;
+            }
+
+            Session["CustomerName"] = TextBoxName.Text;
+            Session["CustomerPhone"] = TextBoxPhone.Text;
+            Session["CustomerEmail"] = TextBoxEmail.Text;
+
+            Response.Redirect("~/frmPayment.aspx");
+
         }
     }
 }

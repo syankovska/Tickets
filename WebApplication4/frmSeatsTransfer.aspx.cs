@@ -11,7 +11,9 @@ namespace Tickets
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-             Server.Transfer("~/frmSeats.aspx");
-        }
+           
+                Response.Redirect("~/frmSeats.aspx");
+           
+         }
     }
 }

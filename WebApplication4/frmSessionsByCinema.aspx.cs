@@ -32,10 +32,8 @@ namespace Tickets
 
             }
 
-            if (Session["UserSessionId"] != null)
-                using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
-                    sc.CancelOrder(Convert.ToString(Session["UserSessionId"]));
-
+        if (Session["CinemaId"] != null)
+            { 
             if (ObjectDataSource1 != null)
             {
                 if (Session["TicketDate"] == null)
@@ -48,8 +46,28 @@ namespace Tickets
                 if (Session["CinemaId"] != null)
                     ObjectDataSource1.SelectParameters["cinemaId"].DefaultValue =
                  Session["CinemaId"].ToString();
+            }
 
+            if (!IsPostBack)
+            {
+                if (Session["OrderUserSessionId"] != null)
+                    using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
+                    {
+                        sc.CancelOrder(Convert.ToString(Session["OrderUserSessionId"]));
+                    }
+                Session["OrderUserSessionId"] = null;
+                Session["UserSessionId"] = null;
+                Session["SessionId"] = null;
+                Session["TotalValueCents"] = null;
+                Session["TotalOrderCount"] = null;
+                Session["SelectedSeats"] = null;
 
+                Session["ShowTime"] = null;
+            }
+            }
+        else
+            {
+                Server.Transfer("~/frmError.aspx");
             }
         }
 
@@ -65,8 +83,7 @@ namespace Tickets
             Session["FilmName"] = (sender as GridView).SelectedRow.Cells[4].Text;
             Session["ShowTime"] = (sender as GridView).SelectedRow.Cells[6].Text;
 
-           // Master.FindControl("HyperLinkNext").Visible = true;
-            Response.Redirect((Master.FindControl("HyperLinkNext") as HyperLink).NavigateUrl);
+             Response.Redirect((Master.FindControl("HyperLinkNext") as HyperLink).NavigateUrl);
         }
 
     }

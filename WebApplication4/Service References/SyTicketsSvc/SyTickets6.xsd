@@ -241,6 +241,7 @@
   <xs:complexType name="SyCinema">
     <xs:sequence>
       <xs:element minOccurs="0" name="Address1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address2" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="HOPK" nillable="true" type="xs:string" />
@@ -249,6 +250,7 @@
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NameAlt" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ParkingInfo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PublicTransport" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

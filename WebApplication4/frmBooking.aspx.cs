@@ -12,42 +12,58 @@ namespace Tickets
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Label5.Text = "Complete Order Result";
-
-
-            if (Session["UserSessionId"] != null)
+             if (Session["OrderUserSessionId"] != null)
             {
                 using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
                 {
                     SyCompleteOrderResponse syCompleteOrderResponse = new SyCompleteOrderResponse();
-                    syCompleteOrderResponse = sc.CompleteOrder(Convert.ToString(Session["UserSessionId"]),
+                    syCompleteOrderResponse = sc.CompleteOrder(Convert.ToString(Session["OrderUserSessionId"]),
                        Convert.ToInt32(Session["TotalValueCents"]), "", true,
                        Convert.ToString(Session["CustomerEmail"]),
                        Convert.ToString(Session["CustomerPhone"]),
                        Convert.ToString(Session["CustomerName"])
                                                   );
-                    TextBox5.Text = syCompleteOrderResponse.Result;
+                    TextBoxOrderCompleteResult.Text = syCompleteOrderResponse.Result;
 
-                    if (TextBox5.Text.Equals("OK"))
+                    if (TextBoxOrderCompleteResult.Text.Equals("OK"))
                     {
                         Session["PrintStream"] = syCompleteOrderResponse.PrintStream;
                         HyperLinkDownload.Visible = true;
+
+                        TextBoxCinemaName.Text = Convert.ToString(Session["CinemaName"]);
+                        TextBoxFilmName.Text = Convert.ToString(Session["FilmName"]);
+                        TextBoxShowTime.Text = Convert.ToString(Session["ShowTime"]);
+                        TextBoxTotalValueCents.Text = Convert.ToString(Session["TotalValueCents"]);
+                        TextBoxTotalOrderCount.Text = Convert.ToString(Session["TotalOrderCount"]);
+                        TextBoxOrderedSeats.Text = Convert.ToString(Session["OrderedSeats"]);
+
+                        Session["CinemaId"] = null;
+                        Session["CinemaName"] = null;
+                        Session["FilmId"] = null;
+                        Session["FilmName"] = null;
+                        Session["SessionId"] = null;
+                        Session["ShowTime"] = null;
+                        Session["UserSessionId"] = null;
+                        Session["OrderUserSessionId"] = null;
+                        Session["TotalValueCents"] = null;
+                        Session["SelectedSeats"] = null;
+                        Session["CustomerName"] = null;
+                        Session["CustomerPhone"] = null;
+                        Session["CustomerEmail"] = null;
+                        Session["OrderedSeats"] = null;
+                        Session["Error"] = "Session expired";
                     }
                     else HyperLinkDownload.Visible = false;
-
-
-
-                    //SetPrintStream(syCompleteOrderResponse.PrintStream);
-                    //  HttpContext.Current.Session["PrintStream"] = syCompleteOrderResponse.PrintStream;
                 }
-                // Response.Redirect("~/GenPDFHandle.ashx");
             }
             else
             {
-                TextBox5.Text = "No session UserSessionId";
+                TextBoxOrderCompleteResult.Text = "No session OrderUserSessionId";
                 HyperLinkDownload.Visible = false;
             }
-            }
+
+           
+        }
 
         [System.Web.Services.WebMethod(enableSession: true)]
         public static bool SetPrintStream(string printStream)

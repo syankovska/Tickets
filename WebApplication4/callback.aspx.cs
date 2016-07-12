@@ -37,26 +37,29 @@ namespace Tickets
 
                     if (TextBox2.Text.Trim().Equals("Удачное выполнение транзакции"))
                     {
-                        if (Session["UserSessionId"] != null)
+                        if (Session["OrderUserSessionId"] != null)
                         {
                             SyCompleteOrderResponse syCompleteOrderResponse = new SyCompleteOrderResponse();
-                            syCompleteOrderResponse = sc.CompleteOrder(Convert.ToString(Session["UserSessionId"]),
+                            syCompleteOrderResponse = sc.CompleteOrder(Convert.ToString(Session["OrderUserSessionId"]),
                                Convert.ToInt32(Session["TotalValueCents"]), taslinkStatusResponse.oid, false,
                                Convert.ToString(Session["CustomerEmail"]),
                                Convert.ToString(Session["CustomerPhone"]),
                                 Convert.ToString(Session["CustomerName"])
                                );
-                            TextBox5.Text = syCompleteOrderResponse.Result;
-                            if (TextBox5.Text.Equals("OK"))
-                            { 
-                                    Session["PrintStream"] = syCompleteOrderResponse.PrintStream;
-                            HyperLinkDownload.Visible = true;
+                            TextBoxCompleteOrderResult.Text = syCompleteOrderResponse.Result;
+                            if (TextBoxCompleteOrderResult.Text.Equals("OK"))
+                            {
+                                Session["PrintStream"] = syCompleteOrderResponse.PrintStream;
+                                HyperLinkDownload.Visible = true;
                             }
-                            else HyperLinkDownload.Visible = false;
+                            else
+                            {
+                                HyperLinkDownload.Visible = false;
+                            }
                         }
                         else
                         {
-                            TextBox5.Text = "No session UserSessionId";
+                            TextBoxCompleteOrderResult.Text = "No session UserSessionId";
                             HyperLinkDownload.Visible = false;
                         }
 
@@ -64,7 +67,7 @@ namespace Tickets
                     }
                     else
                     {
-                        TextBox5.Text = "Ошибка оплаты";
+                        TextBoxCompleteOrderResult.Text = "Ошибка оплаты";
                         HyperLinkDownload.Visible = false;
                     }
 

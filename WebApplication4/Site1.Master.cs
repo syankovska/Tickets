@@ -12,7 +12,10 @@ namespace Tickets
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+           if (SiteMap.CurrentNode != null)
+            { 
 
+                
             if (SiteMap.CurrentNode.Title.Equals("Выбор фильма") ||
                 SiteMap.CurrentNode.Title.Equals("Выбор сеанса") ||
                 SiteMap.CurrentNode.Title.Equals("Выбор кинотеатра"))
@@ -26,7 +29,7 @@ namespace Tickets
 
             if (SiteMap.CurrentNode.Title.Equals("Выбор фильма") ||
                 SiteMap.CurrentNode.Title.Equals("Выбор кинотеатра")||
-                SiteMap.CurrentNode.Title.Equals("Выбор сеанса") && Session["CinemaId"] == null)
+                SiteMap.CurrentNode.Title.Equals("Выбор сеанса") )
             {
                 DropDownListCity.Visible = true;
             }
@@ -51,7 +54,15 @@ namespace Tickets
                 HyperLinkNext.NavigateUrl = SiteMap.CurrentNode.ChildNodes[0].Url;
             }
             else HyperLinkNext.Visible = false;
-           
+
+
+                if (SiteMap.CurrentNode.Title.Equals("Оплата"))
+                {
+                    SiteMapPath1.Visible = false;
+                    if (Session["OrderUserSessionID"] == null)
+                              HyperLinkPrev.Visible = false;
+                }
+            }
         }
 
         protected void DropDownListDate_SelectedIndexChanged(object sender, EventArgs e)
@@ -119,5 +130,7 @@ namespace Tickets
 
                 }
         }
-    }
+
+             
+        }
 }

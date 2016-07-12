@@ -1997,6 +1997,9 @@ namespace Tickets.SyTicketsSvc {
         private string Address1Field;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Address2Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string CityField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2021,6 +2024,9 @@ namespace Tickets.SyTicketsSvc {
         private string ParkingInfoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhoneNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PublicTransportField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -2042,6 +2048,19 @@ namespace Tickets.SyTicketsSvc {
                 if ((object.ReferenceEquals(this.Address1Field, value) != true)) {
                     this.Address1Field = value;
                     this.RaisePropertyChanged("Address1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address2 {
+            get {
+                return this.Address2Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Address2Field, value) != true)) {
+                    this.Address2Field = value;
+                    this.RaisePropertyChanged("Address2");
                 }
             }
         }
@@ -2146,6 +2165,19 @@ namespace Tickets.SyTicketsSvc {
                 if ((object.ReferenceEquals(this.ParkingInfoField, value) != true)) {
                     this.ParkingInfoField = value;
                     this.RaisePropertyChanged("ParkingInfo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PhoneNumber {
+            get {
+                return this.PhoneNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhoneNumberField, value) != true)) {
+                    this.PhoneNumberField = value;
+                    this.RaisePropertyChanged("PhoneNumber");
                 }
             }
         }

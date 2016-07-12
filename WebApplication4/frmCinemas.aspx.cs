@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Tickets.SyTicketsSvc;
 
 namespace Tickets
 {
@@ -21,11 +22,21 @@ namespace Tickets
                  Session["FilmId"].ToString();
             }
 
-            //if (!IsPostBack)
-            //{
-            //    Session["FilmId"] = null;
-            //    Session["FilmName"] = null;
-            //}
+            if (!IsPostBack)
+            {
+                if (Session["OrderUserSessionId"] != null)
+                    using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
+                        sc.CancelOrder(Convert.ToString(Session["OrderUserSessionId"]));
+                Session["SessionId"] = null;
+                Session["UserSessionId"] = null;
+                Session["OrderUserSessionId"] = null;
+                Session["TotalValueCents"] = null;
+                Session["TotalOrderCount"] = null;
+                Session["SelectedSeats"] = null;
+
+                Session["FilmId"] = null;
+                Session["FilmName"] = null;
+            }
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)

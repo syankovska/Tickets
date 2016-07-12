@@ -1,4 +1,19 @@
-﻿.wrapper{
+﻿.buttonSubmitHide { display: none;}
+.linkEnable {color: blue;
+    text-decoration: underline;
+}
+.linkEnable:hover {
+    cursor: pointer;
+}
+.linkDisable {color: black;
+      
+    text-decoration: none;
+}
+.linkDisable:hover {
+    cursor: auto;
+
+}
+.wrapper{
    position: relative;
    float: left;
    margin-bottom: 2px;
@@ -166,3 +181,4 @@ body {
    white-space:nowrap;
 }
 .wrapper td:hover { background-color: #f8f897}
+

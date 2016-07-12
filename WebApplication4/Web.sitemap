@@ -5,18 +5,15 @@
           <!-- <siteMapNode url="~/frmTicketTypes.aspx" title="Выбор билетов"  description="" >-->
                      <siteMapNode url="~/frmSeats.aspx" title="Выбор мест"  description="">
                        <siteMapNode url="~/frmCustomerInfo.aspx" title="Регистрация"  description="">
-                        <siteMapNode url="~/frmPayment.aspx" title="Оплата"  description="" >
-                        </siteMapNode> 
-                <siteMapNode url="~/callback.aspx" title="Подтверждение оплаты"  description="" />
-              </siteMapNode>
-            </siteMapNode>
-            <!--</siteMapNode>-->
+                        <siteMapNode url="~/frmPayment.aspx" title="Оплата"  description="">
+                        </siteMapNode>
+                       </siteMapNode>
+                     </siteMapNode>
+                      <!--</siteMapNode>-->
     </siteMapNode>
     <siteMapNode url="~/frmCinemas.aspx" title="Выбор кинотеатра"  description="">
       <siteMapNode url="~/frmSessionsByCinema.aspx" title="Выбор сеанса"  description="">
         <siteMapNode url="~/frmSeatsTransfer.aspx" title="Выбор мест"  description="">
-          <siteMapNode url="~/frmCustomerInfoTransfer.aspx" title="Регистрация"  description="">
-          </siteMapNode>
         </siteMapNode>
       </siteMapNode>
     </siteMapNode>    

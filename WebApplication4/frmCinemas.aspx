@@ -7,9 +7,7 @@
                 <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" Visible="False" />
                 <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
                 <asp:BoundField DataField="Address1" HeaderText="Address1" SortExpression="Address1" />
-                <asp:BoundField DataField="NameAlt" HeaderText="NameAlt" SortExpression="NameAlt" />
-                <asp:BoundField DataField="ParkingInfo" HeaderText="ParkingInfo" SortExpression="ParkingInfo" />
-                <asp:BoundField DataField="PublicTransport" HeaderText="PublicTransport" SortExpression="PublicTransport" />
+                <asp:BoundField DataField="Address2" HeaderText="Address2" SortExpression="Address2" />
             </Columns>
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

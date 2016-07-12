@@ -18,21 +18,23 @@
       <tr>
        <td>     <asp:Label ID="LabelPhone" runat="server" Text="Phone*"></asp:Label>     </td>
        <td>
-     <asp:TextBox ID="TextBoxPhone" runat="server" AutoPostBack="True" OnTextChanged="TextBoxPhone_TextChanged"></asp:TextBox>
+     <asp:TextBox ID="TextBoxPhone" runat="server" ></asp:TextBox>
         </td>
         </tr>
 
     <tr>
        <td>   <asp:Label ID="LabelEmail" runat="server" Text="E-mail*"></asp:Label>    </td>
        <td>
-           <asp:TextBox ID="TextBoxEmail" runat="server" OnTextChanged="TextBoxPhone_TextChanged" AutoPostBack="True"></asp:TextBox>
+           <asp:TextBox ID="TextBoxEmail" runat="server"></asp:TextBox>
         </td>
         </tr> 
              <tr>
        <td>   <asp:Label ID="LabelIsBooking" runat="server" Text="Just Booking"></asp:Label>    </td>
        <td>
-            <asp:CheckBox ID="CheckBoxIsBooking" runat="server" OnCheckedChanged="CheckBoxIsBooking_CheckedChanged" AutoPostBack="True" />
+            <asp:CheckBox ID="CheckBoxIsBooking" runat="server" OnCheckedChanged="CheckBoxIsBooking_CheckedChanged" AutoPostBack="True"/>
+            <asp:Button ID="ButtonSubmit" runat="server" OnClick="ButtonSubmit_Click" Text="Submit Customer Info" style="display:none;"/> <br/>
         </td>
         </tr> 
  </table>
+    &nbsp;
 </asp:Content>

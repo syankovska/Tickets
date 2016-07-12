@@ -11,6 +11,7 @@ namespace Tickets
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if  (Session["Error"] == null) Session["Error"] = "Session expired";
             LabelError.Text = Convert.ToString(Session["Error"]);
         }
     }

@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site1.Master" CodeBehind="frmSeats.aspx.cs" Inherits="Tickets.frmSeats" %>
 
 <asp:Content  ID="Content1" ContentPlaceHolderID="MainContent"
-    runat="server">
+    runat="server" >
 
      <table style="width: 550px; margin-right: 0px;">
         <tr>
@@ -20,11 +20,12 @@
             </td>
               <td class="tdcell">
                   <asp:Button ID="ButtonCancel" runat="server" OnClick="ButtonCancel_Click" Text="Cancel Order" Enabled="False" /> <br/><br/>
-                       <asp:Label ID="LabelTotalOrderCount" runat="server">TotalOrderCount:</asp:Label><br/>
-                <asp:TextBox ID="TextBoxTotalOrderCount" runat="server" ReadOnly="True" Width="96px"></asp:TextBox><br/> 
+                       <asp:Label ID="LabelTotalOrderCount" runat="server">TotalOrderCount:</asp:Label>
+                  <br/>
+                <asp:TextBox ID="TextBoxTotalOrderCount" runat="server" Width="96px" Enabled="False"></asp:TextBox><br/> 
                    <asp:Label ID="LabelPayment" runat="server">TotalValueCents:</asp:Label><br/>
-                <asp:TextBox ID="TextBoxTotalValueCents" runat="server" ReadOnly="True" Width="96px"></asp:TextBox><br/>
-                 <asp:Button ID="ButtonSubmit" runat="server" OnClick="ButtonSubmit_Click" Text="Submit Order" />
+                <asp:TextBox ID="TextBoxTotalValueCents" runat="server" ReadOnly="True" Width="96px" Enabled="False"></asp:TextBox>
+                  <asp:Button ID="ButtonSubmit" runat="server" OnClick="ButtonSubmit_Click" Text="Submit Order" style="display:none;"/> <br/>
             </td>
         </tr>
          <tr>

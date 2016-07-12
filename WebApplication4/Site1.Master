@@ -9,14 +9,47 @@
 <link href="MyStyleSheet1.css" rel="stylesheet" type="text/css" />
 
 <script>
-    function CellClick(Cell) {
-        var objName = Cell.getAttribute('ID').concat('_tb');
-        if (Cell.src.indexOf('blue') > 0) {
-            Cell.src = "sofa16_green.png";
+    function hrefSeatsSubmitClick(href) {
+        debugger;
+        if (href.getAttribute('class') == null || href.getAttribute('class') != 'linkDisable')
+        document.getElementById('MainContent_ButtonSubmit').click();
+    }
+
+    function hrefCustomerInfoSubmitClick(href) {
+        debugger;
+        if (document.getElementById('MainContent_TextBoxPhone').value == '' ||
+             document.getElementById('MainContent_TextBoxEmail').value == '')
+        {
+            alert('Put on required data(*)');
+            document.getElementById('HyperLinkNext').setAttribute("href", "#");
+        }
+        else document.getElementById('MainContent_ButtonSubmit').click();
+    }
+
+    function checkIsBookingClick(checkbox) {
+        debugger;
+        if (checkbox.checked) {
+            document.getElementById('HyperLinkNext').text = "Бронирование>>";
+            document.getElementById('HyperLinkNext').title = "Бронирование>>";
+            document.getElementById('HyperLinkNext').className = "linkEnable";
+            document.getElementById('HyperLinkNext').setAttribute("href", "#");
+        }
+        else {
+            document.getElementById('HyperLinkNext').title = "Оплата>>";
+            document.getElementById('HyperLinkNext').text = "Оплата>>";
+            document.getElementById('HyperLinkNext').className = "linkEnable";
+            document.getElementById('HyperLinkNext').setAttribute("href", "#");
+        }
+    }
+    function imgClick(img) {
+        debugger;
+        var objName = img.getAttribute('ID').concat('_tb');
+        if (img.src.indexOf('blue') > 0) {
+            img.src = "sofa16_green.png";
 
                 document.getElementById('MainContent_TextBoxTotalValueCents').value =
                 Number(document.getElementById('MainContent_TextBoxTotalValueCents').value) +
-                Number(Cell.getAttribute('Price'));
+                Number(img.getAttribute('Price'));
                 document.getElementById('MainContent_TextBoxTotalOrderCount').value =
                   Number(document.getElementById('MainContent_TextBoxTotalOrderCount').value) + 1;
          
@@ -25,12 +58,12 @@
             else if (document.getElementById(objName).value == 'empty') { document.getElementById(objName).value = 'reordered'; }
           
         }
-        else if (Cell.src.indexOf('green') > 0) {
-            Cell.src = "sofa16_blue.png";
+        else if (img.src.indexOf('green') > 0) {
+            img.src = "sofa16_blue.png";
 
             document.getElementById('MainContent_TextBoxTotalValueCents').value =
             Number(document.getElementById('MainContent_TextBoxTotalValueCents').value) -
-            Number(Cell.getAttribute('Price'));
+            Number(img.getAttribute('Price'));
 
             document.getElementById('MainContent_TextBoxTotalOrderCount').value =
               Number(document.getElementById('MainContent_TextBoxTotalOrderCount').value) - 1;
@@ -38,8 +71,18 @@
             if (document.getElementById(objName).value == 'ordered') { document.getElementById(objName).value = 'unordered'; }
             else if (document.getElementById(objName).value == 'reordered') { document.getElementById(objName).value = 'empty'; }
        }
-        else if (Cell.src.indexOf('red') > 0 ) { alert('This seat is sold'); }
-        else if (Cell.src.indexOf('yellow') > 0) { alert('Invalid config'); }
+        else if (img.src.indexOf('red') > 0 ) { alert('This seat is sold'); }
+        else if (img.src.indexOf('yellow') > 0) { alert('Invalid config'); }
+
+        if (document.getElementById('MainContent_TextBoxTotalOrderCount').value != 0) {
+            document.getElementById('HyperLinkNext').className = "linkEnable"; 
+            document.getElementById('HyperLinkNext').setAttribute("href", "#");
+        }
+        else {
+            document.getElementById('HyperLinkNext').className = "linkDisable";
+            document.getElementById('HyperLinkNext').setAttribute("href", "#");
+        }
+
     }
 
 
@@ -162,8 +205,8 @@
          <asp:Label ID="LabelCinema" runat="server" Text=''><%=Session["CinemaName"]%></asp:Label><br/>
          <asp:Label ID="LabelFilm" runat="server" Text=''><%=Session["FilmName"]%></asp:Label><br/>
          <asp:Label ID="LabelShowTime" runat="server" Text=''><%=Session["ShowTime"]%></asp:Label><br/>
-       <!--  <asp:Label ID="Label1" runat="server" Text=''><%=Session["TotalOrderCount"]%></asp:Label><br/>
-         <asp:Label ID="Label2" runat="server" Text=''><%=Session["TotalValueCents"]%></asp:Label><br/> -->
+         <asp:Label ID="LabelTotalValueCents" runat="server" Text=''><%=Session["TotalValueCents"]%></asp:Label><br/>   
+         <asp:Label ID="LabelOrderedSeats" runat="server" Text=''><%=Session["OrderedSeats"]%></asp:Label> 
       </td>
             </tr>
     </table>
@@ -172,14 +215,14 @@
 
     <table style="width:100%">
         <tr style="width:100%">
-        <td> <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        <td> <asp:ContentPlaceHolder ID="MainContent" runat="server" >
                   </asp:ContentPlaceHolder>
                 <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
             </td>
         </tr>
         <tr>
            <td> 
-            <asp:HyperLink ID="HyperLinkPrev" runat="server">HyperLink</asp:HyperLink>
+            <asp:HyperLink ID="HyperLinkPrev" runat="server" > HyperLink</asp:HyperLink>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:HyperLink ID="HyperLinkNext" runat="server" Visible="False">HyperLink</asp:HyperLink>
             </td>

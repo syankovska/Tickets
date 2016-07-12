@@ -57,9 +57,7 @@ namespace Tickets
           
 
 
-            if (Session["UserSessionId"] != null)
-                using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
-                    sc.CancelOrder(Convert.ToString(Session["UserSessionId"]));
+  
 
             if (Session["CityName"] != null)
                 ObjectDataSource1.SelectParameters["city"].DefaultValue =
@@ -68,14 +66,24 @@ namespace Tickets
 
             if (!IsPostBack)
             {
+                if (Session["OrderUserSessionId"] != null)
+                    using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
+                        sc.CancelOrder(Convert.ToString(Session["OrderUserSessionId"]));
+
                 Session["CinemaId"] = null;
                 Session["CinemaName"] = null;
                 Session["FilmId"] = null;
                 Session["FilmName"] = null;
                 Session["SessionId"] = null;
-   
-               Session["ShowTime"] = null;
-             }
+                Session["ShowTime"] = null;
+                Session["UserSessionId"] = null;
+                Session["OrderUserSessionId"] = null;
+                Session["TotalValueCents"] = null;
+                Session["TotalOrderCount"] = null;
+                Session["SelectedSeats"] = null;
+
+
+            }
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)

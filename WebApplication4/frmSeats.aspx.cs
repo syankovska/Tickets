@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using Tickets.SyTicketsSvc;
 
@@ -12,13 +10,14 @@ namespace Tickets
     public partial class frmSeats : System.Web.UI.Page
     {
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(Request.QueryString["IsBooking"]))
             {
                 Session["IsBooking"] = (Request.QueryString["IsBooking"]);
             }
-       
+
 
             if (!string.IsNullOrEmpty(Request.QueryString["SessionId"]) && !string.IsNullOrEmpty(Request.QueryString["CinemaId"]))
             {
@@ -28,7 +27,7 @@ namespace Tickets
                 using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
                 {
                     var c = sc.GetCinemas().Where(x => x.ID.Equals(Session["CinemaId"])).FirstOrDefault();
-                    if (c != null ) Session["CinemaName"] = c.Name;
+                    if (c != null) Session["CinemaName"] = c.Name;
 
                     var session = sc.GetSessionsByCinema(Convert.ToString(Session["CinemaId"])).Where(x => x.SessionId.Equals(Session["SessionId"])).FirstOrDefault();
                     if (session != null)
@@ -38,95 +37,99 @@ namespace Tickets
                         Session["FilmName"] = sc.GetAllFilms().Where(x => x.ScheduledFilmId.Equals(scheduledFilmId)).FirstOrDefault().Title;
                         Session["ShowTime"] = Convert.ToString(showTime);
                     }
-                                   
-                }
 
                 }
-           
 
-                if (Session["CinemaId"] != null && Session["SessionId"] != null)
+            }
+
+            if (Session["CinemaId"] != null && Session["SessionId"] != null)
             {
                 using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
-            {
-                   // List<SyRestTicketType> restTicketType = new List<SyRestTicketType>();
-
-                      List <SyRestTicketType> restTicketType = sc.GetTicketTypes(Session["CinemaId"].ToString(),
-                                                                     Session["SessionId"].ToString());
+                {
+                    List<SyRestTicketType> restTicketType = sc.GetTicketTypes(Session["CinemaId"].ToString(),
+                                                                   Session["SessionId"].ToString());
 
                     SyTicketsSvc.SySeatLayoutData sySeatLayoutData = new SyTicketsSvc.SySeatLayoutData();
 
-                bool processOrderValue = false;
-                bool userSelectedSeatingSupported = true;
-                bool skipAutoAllocation = true;
+                    bool processOrderValue = false;
+                    bool userSelectedSeatingSupported = true;
+                    bool skipAutoAllocation = true;
 
-                if ((Session["TicketTypes"] as List<SyTicketType>) != null
-                    && (Session["TicketTypes"] as List<SyTicketType>).Count() > 0 && !IsPostBack)
-                {
-                    processOrderValue = false;
-                    userSelectedSeatingSupported = false;
-                    skipAutoAllocation = false;
-                }
-
-                sySeatLayoutData = sc.GetRestAddTickets(Session["CinemaId"].ToString(),
-                                                        Session["SessionId"].ToString(),
-                                                        (Session["TicketTypes"] as List<SyTicketType>),
-                                                        processOrderValue, userSelectedSeatingSupported, skipAutoAllocation);
-
-                Session["TicketTypes"] = null;
-
-                if (!IsPostBack)
-                {
-                    Session["UserSessionId"] = Convert.ToString(sySeatLayoutData.UserSessionId);
-                    Session["TotalValueCents"] = Convert.ToString(sySeatLayoutData.TotalValueCents);
-                    Session["TotalOrderCount"] = Convert.ToString(sySeatLayoutData.TotalOrderCount);
-
-                    TextBoxTotalValueCents.Text = Convert.ToString(sySeatLayoutData.TotalValueCents);
-                    TextBoxTotalOrderCount.Text = Convert.ToString(sySeatLayoutData.TotalOrderCount);
-
-                    if (Convert.ToString(Session["UserSessionId"]) != null && sySeatLayoutData.TotalValueCents != 0)
-                    {
-                        LabelNote.Text = "Your places have been succesfully submitted";
-                        LabelResponseResult.Text = "Submit result OK" + Convert.ToString(Session["UserSessionId"]);
-                    }
-                    else LabelNote.Text = sySeatLayoutData.ErrorDescription;
-
-
-                }
-
-
-
-                int scaleFactor = 4;
-                double cellWidthScale = 0.5; //should be <1
-                int maxcolcount = 15;
-                int cellwidth = 5;
-                int cellHeight = 4;
-                int leftb = 10;
-                int topb = 53;
-                int rowcount = 11;
-
-                leftb = sySeatLayoutData.BoundaryLeft;
-                topb = sySeatLayoutData.BoundaryTop;
-
-                SyArea area = sySeatLayoutData.Areas.OrderByDescending(x => x.ColumnCount).FirstOrDefault();
-                if (area != null)
-                {
-                    maxcolcount = area.ColumnCount;
-                    cellwidth = area.Width / area.ColumnCount;
-                }
-                area = sySeatLayoutData.Areas.Where(x => x.RowCount == 1).FirstOrDefault();
-                if (area != null) cellHeight = area.Height;
-
-
-                    //                var topArea = sySeatLayoutData.Areas.OrderByDescending(x => x.Top).FirstOrDefault();
-                    //               var bottomArea = sySeatLayoutData.Areas.OrderBy(x => x.Top).FirstOrDefault();
-
-
-
-
-                    //    if (topArea != null && bottomArea != null)
+                    //if ((Session["TicketTypes"] as List<SyTicketType>) != null
+                    //    && (Session["TicketTypes"] as List<SyTicketType>).Count() > 0 && !IsPostBack)
                     //{
-                    //        rowcount = (topArea.Top - bottomArea.Top - bottomArea.Height) / cellHeight + 1;
+                    //    // 'autoallocation seats' case is not used now
+                    //    processOrderValue = false;
+                    //    userSelectedSeatingSupported = false;
+                    //    skipAutoAllocation = false;
                     //}
+
+                    // method should be invoked every page loading to be sure that ordered seats are still accessable  
+                    sySeatLayoutData = sc.GetRestAddTickets(Session["CinemaId"].ToString(),
+                                                            Session["SessionId"].ToString(),
+                                                            (Session["TicketTypes"] as List<SyTicketType>),
+                                                            processOrderValue, userSelectedSeatingSupported, skipAutoAllocation);
+
+                    Session["TicketTypes"] = null;
+
+                    if (!IsPostBack)
+                    {
+                        Session["UserSessionId"] = Convert.ToString(sySeatLayoutData.UserSessionId);
+
+             
+                        if (Session["UserSessionId"] != null)
+                        {
+                            (Master.FindControl("HyperLinkNext") as HyperLink).Visible = true;
+                            (Master.FindControl("HyperLinkNext") as HyperLink).Attributes.Add("onclick", "hrefSeatsSubmitClick(HyperLinkNext)");
+                            (Master.FindControl("HyperLinkNext") as HyperLink).Attributes.Add("href", "#");
+                            if (Session["OrderUserSessionId"] == null)
+
+                            {
+                                // initial load without seat allocation
+
+                                (Master.FindControl("HyperLinkNext") as HyperLink).Attributes.Add("class", "linkDisable");
+
+                                Session["TotalValueCents"] = null;
+                                Session["TotalOrderCount"] = null;
+                                TextBoxTotalValueCents.Text = "0";
+                                TextBoxTotalOrderCount.Text = "0";
+
+                            }
+                            else
+                            {
+                                (Master.FindControl("HyperLinkNext") as HyperLink).Attributes.Add("class", "linkEnable");
+                                TextBoxTotalValueCents.Text = Convert.ToString(Session["TotalValueCents"]);
+                                TextBoxTotalOrderCount.Text = Convert.ToString(Session["TotalOrderCount"]);
+                            }
+                        }
+                        else
+                        {
+                            Session["Error"] = "Извините,  продажа билетов Онлайн недоступна. Выберите другой сеанс";
+                            Server.Transfer("~/frmError.aspx");
+                        }
+
+                    }
+
+                    int scaleFactor = 4;
+                    double cellWidthScale = 0.5; //should be <1
+                    int maxcolcount = 15;
+                    int cellwidth = 5;
+                    int cellHeight = 4;
+                    int leftb = 10;
+                    int topb = 53;
+                    int rowcount = 11;
+
+                    leftb = sySeatLayoutData.BoundaryLeft;
+                    topb = sySeatLayoutData.BoundaryTop;
+
+                    SyArea area = sySeatLayoutData.Areas.OrderByDescending(x => x.ColumnCount).FirstOrDefault();
+                    if (area != null)
+                    {
+                        maxcolcount = area.ColumnCount;
+                        cellwidth = area.Width / area.ColumnCount;
+                    }
+                    area = sySeatLayoutData.Areas.Where(x => x.RowCount == 1).FirstOrDefault();
+                    if (area != null) cellHeight = area.Height;
 
                     var distinctHeights = sySeatLayoutData.Areas
                              .GroupBy(p => new { p.Top, p.Height })
@@ -147,10 +150,23 @@ namespace Tickets
 
                         }
                     }
-                    DrawAreas(sySeatLayoutData, DrawGrid(maxcolcount, rowcount+2, cellwidth, cellHeight, leftb, topb, cellWidthScale, scaleFactor), cellWidthScale, cellwidth, scaleFactor, restTicketType);
+                    DrawAreas(sySeatLayoutData, DrawGrid(maxcolcount, rowcount + 2, cellwidth, cellHeight, leftb, topb, cellWidthScale, scaleFactor), cellWidthScale, cellwidth, scaleFactor, restTicketType);
+                }
+                if (!IsPostBack)
+                {
+                     if (Session["OrderUserSessionId"] != null)
+                    {
+                        ButtonCancel.Enabled = true;
+                    }
+                }
             }
+            else
+            {
+                Server.Transfer("~/frmError.aspx");
             }
          }
+
+
 
         protected void DrawAreas(SyTicketsSvc.SySeatLayoutData sySeatLayoutData, List<GridPoint> listPoints, double cellWidthScale, int cellwidth, int scaleFactor, List<SyRestTicketType> restTicketType)
         {
@@ -251,8 +267,6 @@ namespace Tickets
                     TableCell cell = new TableCell();
                     cell = r.Cells[r.Cells.Count - 1];
                     row.Cells.Add(cell);
-                    //row.Attributes.Add("Style", String.Format("height: {0}px;",
-                    //                           scaleFactor * 4));
                 }
                 TableTransp.Rows.Add(row);
             }
@@ -324,8 +338,21 @@ namespace Tickets
                 tb.Text = "empty";
 
 
-                if (s.Status == 1)
-                    image.ImageUrl = "~/sofa16_red.png";
+                if (s.Status == 1) {
+                    if (Session["SelectedSeats"] != null) {
+
+                        var ss = (Session["SelectedSeats"] as List<SySelectedSeat>).Where(p =>
+                        p.AreaNumber == s.Position.AreaNumber &&
+                        p.ColumnIndex == s.Position.ColumnIndex &&
+                        p.RowIndex == s.Position.RowIndex).FirstOrDefault();
+                        if (ss !=null) { 
+                        image.ImageUrl = "~/sofa16_green.png";
+                        tb.Text = "reordered";
+                        }
+                        else image.ImageUrl = "~/sofa16_red.png";
+                    }
+                    else image.ImageUrl = "~/sofa16_red.png";
+                }
                 else if (s.Status == 4)
                 {
                     image.ImageUrl = "~/sofa16_green.png";
@@ -380,12 +407,12 @@ namespace Tickets
                             (c.Controls[0] as Image).ID = "i_" + c.ID;
                             (c.Controls[1] as TextBox).ID = (c.Controls[0] as Image).ID + "_tb";
 
-                            (c.Controls[0] as Image).Attributes.Add("onclick", "CellClick(MainContent_" + (c.Controls[0] as Image).ID + ")");
+                            (c.Controls[0] as Image).Attributes.Add("onclick", "imgClick(MainContent_" + (c.Controls[0] as Image).ID + ")");
                             //image.Attributes.Add("onmouseover", "this.style.cursor = 'pointer';");
                             (c.Controls[0] as Image).Attributes.Add("onmouseover", "showhint('" +
                                 (c.Controls[0] as Image).ID +
                                 " price: " + (c.Controls[0] as Image).Attributes["price"] +
-                           //     " TicketTypeCode: " + (c.Controls[0] as Image).Attributes["TicketTypeCode"] +
+                           //   " TicketTypeCode: " + (c.Controls[0] as Image).Attributes["TicketTypeCode"] +
                                 " area: " + (c.Controls[0] as Image).Attributes["area"] +
                           //      " AreaCategoryCode: " + (c.Controls[0] as Image).Attributes["AreaCategoryCode"] +
                           //      " Status: " + (c.Controls[0] as Image).Attributes["Status"] +
@@ -411,22 +438,28 @@ namespace Tickets
         {
             using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
             {
-                if (Session["UserSessionId"] != null)
-                    LabelResponseResult.Text = sc.CancelOrder(Convert.ToString(Session["UserSessionId"]));
+      
+
+                    LabelResponseResult.Text = sc.CancelOrder(Convert.ToString(Session["OrderUserSessionId"]));
+            
                 if (LabelResponseResult.Text.Equals("OK"))
                 {
                     UpdateCanceledSeats();
                     TextBoxTotalValueCents.Text = "0";
                     TextBoxTotalOrderCount.Text = "0";
 
-                    Session["TotalValueCents"] = 0;
-                    Session["TotalOrderCount"] = 0;
+
+                    LabelNote.Text = "Please select your seats:";
+                    LabelResponseResult.Text = "Canceled " + LabelResponseResult.Text + " " + Convert.ToString(Session["OrderUserSessionId"]);
+                    Session["TotalValueCents"] = null;
+                    Session["TotalOrderCount"] = null;
+                    Session["OrderUserSessionId"] = null;
                 }
 
             }
-            LabelResponseResult.Text = "Canceled " + LabelResponseResult.Text + " " + Convert.ToString(Session["UserSessionId"]);
-            LabelNote.Text = "Please select your seats:";
-        }
+           
+            
+     }
 
         protected void ButtonSubmit_Click(object sender, EventArgs e)
         {
@@ -437,8 +470,8 @@ namespace Tickets
 
                 using (SyTicketsSvc.SessionsClient sc = new SessionsClient())
                 {
-                    if (Session["UserSessionId"] != null)
-                        LabelResponseResult.Text = "Canceled " + sc.CancelOrder(Convert.ToString(Session["UserSessionId"]));
+                    if (Session["OrderUserSessionId"] != null)
+                        LabelResponseResult.Text = "Canceled " + sc.CancelOrder(Convert.ToString(Session["OrderUserSessionId"]));
 
                     List<SyRestTicketType> restTicketType = sc.GetTicketTypes(Session["CinemaId"].ToString(),
                                                                               Session["SessionId"].ToString());
@@ -471,39 +504,45 @@ namespace Tickets
                         if (!LabelResponseResult.Text.Equals("OK"))
                         {
 
-
                             LabelNote.Text = "Please select others seats";
                             ButtonCancel.Enabled = false;
+                            LabelResponseResult.Text = "Submit result " + LabelResponseResult.Text;
+                            Session["Error"] = "Please select others seats " + sySeatLayoutData.ErrorDescription;
+                            Session["SelectedSeats"] = null;
+                            Session["OrderedSeats"] = null;
+                            Server.Transfer("~/frmError.aspx");
+
                         }
 
                         else
                         {
-                            LabelNote.Text = "Your places have been succesfully submitted";
                             ButtonCancel.Enabled = true;
+                            Session["OrderUserSessionId"]= Convert.ToString(sySeatLayoutData.UserSessionId);
+                            Response.Redirect("~/frmCustomerInfo.aspx");
                         }
-                        LabelResponseResult.Text = "Submit result " + LabelResponseResult.Text + Convert.ToString(Session["UserSessionId"]);
+           
                 
                     }
                     else
                     {
-                        LabelNote.Text = sySeatLayoutData.ErrorDescription + Convert.ToString(Session["UserSessionId"]);
+                        LabelNote.Text = sySeatLayoutData.ErrorDescription;
                         TextBoxTotalValueCents.Text = "0";
                         TextBoxTotalOrderCount.Text = "0";
 
-                        Session["TotalValueCents"] = 0;
-                        Session["TotalOrderCount"] = 0;
+                        Session["TotalValueCents"] = null;
+                        Session["TotalOrderCount"] = null;
 
-                        LabelNote.Text = "Order error: " + sySeatLayoutData.ErrorDescription;
-                        TextBoxTotalValueCents.Text = Convert.ToString(Session["TotalValueCents"]);
-                        TextBoxTotalOrderCount.Text = Convert.ToString(Session["TotalOrderCount"]); ;
                         ButtonCancel.Enabled = false;
+
+                        Session["Error"] = "Order error: " + sySeatLayoutData.ErrorDescription;
+                        Server.Transfer("~/frmError.aspx");
                     }
                 }
 
             }
             else
             {
-                LabelNote.Text = "Nothing to submit. Go to Payment";
+                LabelNote.Text = "Nothing to submit. Go to Registration";
                 TextBoxTotalValueCents.Text = Convert.ToString(Session["TotalValueCents"]);
                 TextBoxTotalOrderCount.Text = Convert.ToString(Session["TotalOrderCount"]);
                 ButtonCancel.Enabled = true;
@@ -511,7 +550,7 @@ namespace Tickets
 
             UpdateOrderedSeats();
             Session["TicketTypes"] = null;
-            Session["SelectedSeats"] = null;
+         //   Session["SelectedSeats"] = null;
             Master.FindControl("HyperLinkNext").Visible = true;
         }
 
@@ -557,6 +596,7 @@ namespace Tickets
         {
             (Session["TicketTypes"] as List<SyTicketType>)?.Clear();
             (Session["SelectedSeats"] as List<SyTicketType>)?.Clear();
+            Session["OrderedSeats"] = null;  
             List<SyTicketType> stt = new List<SyTicketType>();
             List<SySelectedSeat> ss = new List<SySelectedSeat>();
 
@@ -581,6 +621,9 @@ namespace Tickets
                         sySelectedSeat.AreaNumber = Convert.ToInt32((c.Controls[0] as Image).Attributes["AreaNumber"]);
                         sySelectedSeat.ColumnIndex = Convert.ToInt32((c.Controls[0] as Image).Attributes["ColumnIndex"]);
                         sySelectedSeat.RowIndex = Convert.ToInt32((c.Controls[0] as Image).Attributes["RowIndex"]);
+                        Session["OrderedSeats"] = Convert.ToString(Session["OrderedSeats"]) +
+                           " Row:" + Convert.ToString((c.Controls[0] as Image).Attributes["RowNumber"]) +
+                           "Seat:" + Convert.ToString((c.Controls[0] as Image).Attributes["SeatNumber"]) + ";";
                         ss.Add(sySelectedSeat);
 
                     }
@@ -605,6 +648,11 @@ namespace Tickets
                     }
                 }
             }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            ButtonSubmit.Visible = false;
         }
     }
 }
