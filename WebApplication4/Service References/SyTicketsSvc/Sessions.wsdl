@@ -1407,6 +1407,63 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_ISessions_GeneratePkPass_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_ISessions_GeneratePkPass_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_ISessions_GeneratePkPass_FaultExceptionFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="WSHttpBinding_ISessions_GetCities_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -1853,6 +1910,15 @@
   <wsdl:message name="ISessions_GeneratePdf_FaultExceptionFault_FaultMessage">
     <wsdl:part xmlns:q23="http://schemas.datacontract.org/2004/07/System.ServiceModel" name="detail" element="q23:FaultException" />
   </wsdl:message>
+  <wsdl:message name="ISessions_GeneratePkPass_InputMessage">
+    <wsdl:part name="parameters" element="tns:GeneratePkPass" />
+  </wsdl:message>
+  <wsdl:message name="ISessions_GeneratePkPass_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GeneratePkPassResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISessions_GeneratePkPass_FaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q24="http://schemas.datacontract.org/2004/07/System.ServiceModel" name="detail" element="q24:FaultException" />
+  </wsdl:message>
   <wsdl:message name="ISessions_GetCities_InputMessage">
     <wsdl:part name="parameters" element="tns:GetCities" />
   </wsdl:message>
@@ -1860,7 +1926,7 @@
     <wsdl:part name="parameters" element="tns:GetCitiesResponse" />
   </wsdl:message>
   <wsdl:message name="ISessions_GetCities_FaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q24="http://schemas.datacontract.org/2004/07/System.ServiceModel" name="detail" element="q24:FaultException" />
+    <wsdl:part xmlns:q25="http://schemas.datacontract.org/2004/07/System.ServiceModel" name="detail" element="q25:FaultException" />
   </wsdl:message>
   <wsdl:message name="ISessions_GetFilmsByCity_InputMessage">
     <wsdl:part name="parameters" element="tns:GetFilmsByCity" />
@@ -1869,7 +1935,7 @@
     <wsdl:part name="parameters" element="tns:GetFilmsByCityResponse" />
   </wsdl:message>
   <wsdl:message name="ISessions_GetFilmsByCity_FaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q25="http://schemas.datacontract.org/2004/07/System.ServiceModel" name="detail" element="q25:FaultException" />
+    <wsdl:part xmlns:q26="http://schemas.datacontract.org/2004/07/System.ServiceModel" name="detail" element="q26:FaultException" />
   </wsdl:message>
   <wsdl:message name="ISessions_GetDistinctSessionDateByCity_InputMessage">
     <wsdl:part name="parameters" element="tns:GetDistinctSessionDateByCity" />
@@ -1878,7 +1944,7 @@
     <wsdl:part name="parameters" element="tns:GetDistinctSessionDateByCityResponse" />
   </wsdl:message>
   <wsdl:message name="ISessions_GetDistinctSessionDateByCity_FaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q26="http://schemas.datacontract.org/2004/07/System.ServiceModel" name="detail" element="q26:FaultException" />
+    <wsdl:part xmlns:q27="http://schemas.datacontract.org/2004/07/System.ServiceModel" name="detail" element="q27:FaultException" />
   </wsdl:message>
   <wsdl:message name="ISessions_GetCinemasByCityAndScheduledFilmId_InputMessage">
     <wsdl:part name="parameters" element="tns:GetCinemasByCityAndScheduledFilmId" />
@@ -1887,7 +1953,7 @@
     <wsdl:part name="parameters" element="tns:GetCinemasByCityAndScheduledFilmIdResponse" />
   </wsdl:message>
   <wsdl:message name="ISessions_GetCinemasByCityAndScheduledFilmId_FaultExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q27="http://schemas.datacontract.org/2004/07/System.ServiceModel" name="detail" element="q27:FaultException" />
+    <wsdl:part xmlns:q28="http://schemas.datacontract.org/2004/07/System.ServiceModel" name="detail" element="q28:FaultException" />
   </wsdl:message>
   <wsdl:portType name="ISessions">
     <wsdl:operation name="GetAllSessions">
@@ -2004,6 +2070,11 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ISessions/GeneratePdf" message="tns:ISessions_GeneratePdf_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISessions/GeneratePdfResponse" message="tns:ISessions_GeneratePdf_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/ISessions/GeneratePdfFaultExceptionFault" name="FaultExceptionFault" message="tns:ISessions_GeneratePdf_FaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GeneratePkPass">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISessions/GeneratePkPass" message="tns:ISessions_GeneratePkPass_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISessions/GeneratePkPassResponse" message="tns:ISessions_GeneratePkPass_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ISessions/GeneratePkPassFaultExceptionFault" name="FaultExceptionFault" message="tns:ISessions_GeneratePkPass_FaultExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetCities">
       <wsdl:input wsaw:Action="http://tempuri.org/ISessions/GetCities" message="tns:ISessions_GetCities_InputMessage" />
@@ -2371,6 +2442,21 @@
       </wsdl:output>
       <wsdl:fault name="FaultExceptionFault">
         <wsp:PolicyReference URI="#WSHttpBinding_ISessions_GeneratePdf_FaultExceptionFault_Fault" />
+        <soap12:fault use="literal" name="FaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GeneratePkPass">
+      <soap12:operation soapAction="http://tempuri.org/ISessions/GeneratePkPass" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_ISessions_GeneratePkPass_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_ISessions_GeneratePkPass_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FaultExceptionFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_ISessions_GeneratePkPass_FaultExceptionFault_Fault" />
         <soap12:fault use="literal" name="FaultExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>

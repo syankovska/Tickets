@@ -74,6 +74,7 @@
     <Content Include="frmTicketTypes.aspx" />
     <Content Include="GenPDFHandle.ashx" />
     <Content Include="WebForm1.aspx" />
+    <Content Include="GenPkPassHandle.ashx" />
     <None Include="Properties\PublishProfiles\Sy profile 1.pubxml" />
     <None Include="Service References\SyTicketsSvc\configuration91.svcinfo" />
     <None Include="Service References\SyTicketsSvc\configuration.svcinfo" />
@@ -237,6 +238,9 @@
     </Compile>
     <Compile Include="GenPDFHandle.ashx.cs">
       <DependentUpon>GenPDFHandle.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="GenPkPassHandle.ashx.cs">
+      <DependentUpon>GenPkPassHandle.ashx</DependentUpon>
     </Compile>
     <Compile Include="GridPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

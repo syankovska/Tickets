@@ -2425,6 +2425,10 @@ namespace Tickets.SyTicketsSvc {
         [System.ServiceModel.FaultContractAttribute(typeof(System.ServiceModel.FaultException), Action="http://tempuri.org/ISessions/GeneratePdfFaultExceptionFault", Name="FaultException", Namespace="http://schemas.datacontract.org/2004/07/System.ServiceModel")]
         System.IO.MemoryStream GeneratePdf(string printStream, int totalOrderCount);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GeneratePkPass", ReplyAction="http://tempuri.org/ISessions/GeneratePkPassResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(System.ServiceModel.FaultException), Action="http://tempuri.org/ISessions/GeneratePkPassFaultExceptionFault", Name="FaultException", Namespace="http://schemas.datacontract.org/2004/07/System.ServiceModel")]
+        System.IO.MemoryStream GeneratePkPass(string printStream, int passNum);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessions/GetCities", ReplyAction="http://tempuri.org/ISessions/GetCitiesResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(System.ServiceModel.FaultException), Action="http://tempuri.org/ISessions/GetCitiesFaultExceptionFault", Name="FaultException", Namespace="http://schemas.datacontract.org/2004/07/System.ServiceModel")]
         System.Collections.Generic.List<string> GetCities();
@@ -2560,6 +2564,10 @@ namespace Tickets.SyTicketsSvc {
         
         public System.IO.MemoryStream GeneratePdf(string printStream, int totalOrderCount) {
             return base.Channel.GeneratePdf(printStream, totalOrderCount);
+        }
+        
+        public System.IO.MemoryStream GeneratePkPass(string printStream, int passNum) {
+            return base.Channel.GeneratePkPass(printStream, passNum);
         }
         
         public System.Collections.Generic.List<string> GetCities() {

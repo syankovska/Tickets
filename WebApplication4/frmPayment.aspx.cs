@@ -26,7 +26,7 @@ namespace Tickets
                             TaslinkOrderResponse taslinkOrderResponse = new TaslinkOrderResponse();
                             taslinkOrderResponse = sc.GetTaslinkOrder(Convert.ToString(totalValueCents), HttpContext.Current.Request.Url.AbsoluteUri);
 
-                            Response.Redirect("http://multiplex.taslink.com.ua/?oid=" + taslinkOrderResponse.oid);
+                            Response.Redirect("https://payments.multiplex.ua?oid=" + taslinkOrderResponse.oid);
                         //}
                         //catch (System.ServiceModel.FaultException)
                         //{

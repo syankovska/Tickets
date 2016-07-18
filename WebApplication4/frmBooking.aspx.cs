@@ -52,7 +52,19 @@ namespace Tickets
                         Session["CustomerEmail"] = null;
                         Session["OrderedSeats"] = null;
                         Session["Error"] = "Session expired";
-                    }
+
+                        HyperLink pkPassHyperLink;
+
+                        for (int i=0; i < Convert.ToInt32(Session["TotalOrderCount"]); i++)
+                            {
+                            pkPassHyperLink = new HyperLink();
+                            pkPassHyperLink.NavigateUrl = "~/GenPkPassHandle.ashx?passNum=" + Convert.ToString(i + 1);
+                            pkPassHyperLink.ID = "HyperLinkDownload" + Convert.ToString(i + 1);
+                            pkPassHyperLink.Text = "Download pass" + Convert.ToString(i + 1);
+                            PlaceHolder1.Controls.Add(pkPassHyperLink);
+                        }
+
+               }
                     else HyperLinkDownload.Visible = false;
                 }
             }

@@ -47,8 +47,12 @@
         </tr> 
         <tr>
             <td> 
-                   <asp:HyperLink ID="HyperLinkDownload" runat="server"  NavigateUrl="~/GenPDFHandle.ashx">Download your tickets</asp:HyperLink>
+            <asp:HyperLink ID="HyperLinkDownload" runat="server"  NavigateUrl="~/GenPDFHandle.ashx">Download your tickets</asp:HyperLink><br/>
             </td>
+            <td> 
+                <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>               
+            </td>
+
  </tr>
  </table>
     </div>
