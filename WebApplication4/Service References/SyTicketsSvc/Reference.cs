@@ -38,6 +38,9 @@ namespace Tickets.SyTicketsSvc {
         private string ScheduledFilmTitleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ScreenNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SeatsAvailableField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -123,6 +126,19 @@ namespace Tickets.SyTicketsSvc {
                 if ((object.ReferenceEquals(this.ScheduledFilmTitleField, value) != true)) {
                     this.ScheduledFilmTitleField = value;
                     this.RaisePropertyChanged("ScheduledFilmTitle");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ScreenName {
+            get {
+                return this.ScreenNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ScreenNameField, value) != true)) {
+                    this.ScreenNameField = value;
+                    this.RaisePropertyChanged("ScreenName");
                 }
             }
         }
@@ -1518,6 +1534,15 @@ namespace Tickets.SyTicketsSvc {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ResultField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string VistaBookingIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string VistaBookingNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string VistaTransNumberField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -1550,6 +1575,45 @@ namespace Tickets.SyTicketsSvc {
                 if ((object.ReferenceEquals(this.ResultField, value) != true)) {
                     this.ResultField = value;
                     this.RaisePropertyChanged("Result");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string VistaBookingId {
+            get {
+                return this.VistaBookingIdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.VistaBookingIdField, value) != true)) {
+                    this.VistaBookingIdField = value;
+                    this.RaisePropertyChanged("VistaBookingId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string VistaBookingNumber {
+            get {
+                return this.VistaBookingNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.VistaBookingNumberField, value) != true)) {
+                    this.VistaBookingNumberField = value;
+                    this.RaisePropertyChanged("VistaBookingNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string VistaTransNumber {
+            get {
+                return this.VistaTransNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.VistaTransNumberField, value) != true)) {
+                    this.VistaTransNumberField = value;
+                    this.RaisePropertyChanged("VistaTransNumber");
                 }
             }
         }
